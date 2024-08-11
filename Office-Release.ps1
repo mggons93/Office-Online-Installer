@@ -6,6 +6,23 @@ Add-Type -AssemblyName PresentationFramework
 # Determinar si el sistema operativo es de 64 bits
 $is64Bit = [Environment]::Is64BitOperatingSystem
 
+# Minimizar la ventana de PowerShell
+Add-Type @"
+using System;
+using System.Runtime.InteropServices;
+
+public class Win32 {
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+    [DllImport("kernel32.dll", ExactSpelling = true)]
+    public static extern IntPtr GetConsoleWindow();
+}
+"@
+
+$consolePtr = [Win32]::GetConsoleWindow()
+[Win32]::ShowWindow($consolePtr, 6) # 6 = Minimizar la ventana
+
 # Crear la ventana sin ícono
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
