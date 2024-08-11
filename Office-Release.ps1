@@ -306,3 +306,6 @@ $installButton.Add_Click({
 
 # Mostrar la ventana
 $window.ShowDialog() | Out-Null
+
+# Restaurar la ventana de PowerShell a su estado original
+[Win32]::ShowWindow($consolePtr, 9) # 9 = Restaurar la ventana
