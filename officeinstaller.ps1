@@ -1,10 +1,6 @@
-﻿# Importar las librerías necesarias
 Add-Type -AssemblyName PresentationFramework
-
-# Determinar si el sistema operativo es de 64 bits
 $is64Bit = [Environment]::Is64BitOperatingSystem
 
-# Minimizar la ventana de PowerShell
 Add-Type @"
 using System;
 using System.Runtime.InteropServices;
@@ -19,9 +15,8 @@ public class Win32 {
 "@
 
 $consolePtr = [Win32]::GetConsoleWindow()
-[Win32]::ShowWindow($consolePtr, 6) # 6 = Minimizar la ventana
+[Win32]::ShowWindow($consolePtr, 6)
 
-# Crear la ventana sin ícono
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -133,11 +128,9 @@ $consolePtr = [Win32]::GetConsoleWindow()
 </Window>
 "@
 
-# Cargar el XAML
 $reader = (New-Object System.Xml.XmlNodeReader $xaml)
 $window = [Windows.Markup.XamlReader]::Load($reader)
 
-# Obtener los elementos
 $variantComboBox = $window.FindName("variantComboBox")
 $languageComboBox = $window.FindName("languageComboBox")
 $vlActivationCheckBox = $window.FindName("vlActivationCheckBox")
@@ -149,7 +142,6 @@ $logTextBox = $window.FindName("logTextBox")
 $vlOptionsPanel = $window.FindName("vlOptionsPanel")
 $autoActivationCheckBox = $window.FindName("autoActivationCheckBox")
 
-# Función para agregar mensajes al log
 function Add-LogMessage {
     param (
         [string]$message
@@ -157,33 +149,28 @@ function Add-LogMessage {
     $logTextBox.Text += "$message`r`n"
 }
 
-# Manejar el evento Checked del CheckBox de activación VL
 $vlActivationCheckBox.Add_Checked({
     $vlOptionsPanel.Visibility = 'Visible'
     $autoActivationCheckBox.IsChecked = $false
     $autoActivationCheckBox.IsEnabled = $false
 })
 
-# Manejar el evento Unchecked del CheckBox de activación VL
 $vlActivationCheckBox.Add_Unchecked({
     $vlOptionsPanel.Visibility = 'Collapsed'
     $autoActivationCheckBox.IsEnabled = $true
     $autoActivationCheckBox.IsChecked = $false
 })
 
-# Manejar el evento Checked del CheckBox de activación automática
 $autoActivationCheckBox.Add_Checked({
     $vlActivationCheckBox.IsChecked = $false
 })
 
-# Manejar el evento Unchecked del CheckBox de activación automática
 $autoActivationCheckBox.Add_Unchecked({
     if (-not $vlActivationCheckBox.IsChecked) {
         $autoActivationCheckBox.IsChecked = $false
     }
 })
 
-# Definir la acción del botón
 $installButton.Add_Click({
     $selectedVariant = $variantComboBox.SelectedItem.Content
     $selectedLanguageFull = $languageComboBox.SelectedItem.Content
@@ -194,11 +181,9 @@ $installButton.Add_Click({
     $licenseKey = if ($useVL) { $licenseKeyTextBox.Text } else { $null }
     $autoActivate = $autoActivationCheckBox.IsChecked
 
-    # URL de descarga
     $url = "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=$selectedVariant&platform=$architecture&language=$selectedLanguage&version=O16GA"
     $outputFile = "$env:TEMP\${selectedVariant}-${selectedLanguage}-${architecture}.exe"
 
-    # Confirmar la instalación
     $message = "Se procederá a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
     if ($useVL) {
         $message += "`n\n- Edición VL: $editionVL"
@@ -211,29 +196,21 @@ $installButton.Add_Click({
     $result = [System.Windows.MessageBox]::Show($message, "Confirmar Instalación", [System.Windows.MessageBoxButton]::YesNo, [System.Windows.MessageBoxImage]::Question)
 
     if ($result -eq [System.Windows.MessageBoxResult]::Yes) {
-        # Agregar mensaje al log
         Add-LogMessage "Descargando $selectedVariant $selectedLanguage para sistema $architecture..."
 		Add-LogMessage "Descarga completada. Iniciando la instalación..."
         Invoke-WebRequest -Uri $url -OutFile $outputFile
        
-        # Ejecutar el instalador en modo silencioso
         Start-Process -FilePath $outputFile -Wait
         "taskkill /f /im OfficeC2RClient.exe" | cmd
 
-        # Agregar mensaje al log
         Add-LogMessage "Instalación completada."
 
-        # Activación automática si se seleccionó
         if ($autoActivate -and -not $useVL) {
             Add-LogMessage "Iniciando Activacion. Espere..."
            
-            # AquÃ­ puedes aÃ±adir el cÃ³digo del script de activaciÃ³n personalizado
-            # Ejemplo:
-            # Construir el enlace de descarga
             $url = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/master/MAS/All-In-One-Version/MAS_AIO-CRC32_31F7FD1E.cmd" 
             $outputPath1 = "$env:TEMP\MAS_AIO-CRC32_31F7FD1E.cmd"
-            # Descargar el archivo
-			Add-LogMessage "Activando..."
+            Add-LogMessage "Activando..."
             Invoke-WebRequest -Uri $url -OutFile $outputPath1
             Start-Process -FilePath $outputPath1 /Ohook -Wait 
             Add-LogMessage "Eliminando Archivos Usados..."
@@ -245,7 +222,6 @@ $installButton.Add_Click({
        if ($useVL) {
         Add-LogMessage "Convirtiendo Office Retail a Vol. Espere..."
         
-        # Activación VL según edición
         $edition = switch ($editionVL) {
             "Office 2016 STD VL" { "StandardVL" }
             "Office 2016 PRO VL" { "ProPlusVL" }
@@ -269,7 +245,6 @@ $installButton.Add_Click({
 
         Add-LogMessage "Edición seleccionada: $editionVL ($edition)"
 
-        # Cambiar al directorio de Microsoft Office (64 bits)
         if (Test-Path "$env:ProgramFiles\Microsoft Office\Office16") {
             Set-Location "$env:ProgramFiles\Microsoft Office\Office16"
             Add-LogMessage "Cambiado al directorio: $env:ProgramFiles\Microsoft Office\Office16"
@@ -284,7 +259,7 @@ $installButton.Add_Click({
             exit
         }
 
-        # Obtener la lista de archivos .xrm-ms en el directorio específico
+
         $licenseFiles = Get-ChildItem -Path "..\root\Licenses16\" -Filter "$edition*.xrm-ms"
         Add-LogMessage "Archivos de licencia encontrados: $($licenseFiles.Count)"
         
@@ -302,8 +277,5 @@ $installButton.Add_Click({
     }
 })
 
-# Mostrar la ventana
 $window.ShowDialog() | Out-Null
-
-# Restaurar la ventana de PowerShell a su estado original
 [Win32]::ShowWindow($consolePtr, 9) # 9 = Restaurar la ventana
