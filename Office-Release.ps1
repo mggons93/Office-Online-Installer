@@ -1,6 +1,4 @@
-﻿Set-ExecutionPolicy Bypass -Scope LocalMachine -Force
-
-# Importar las librerías necesarias
+﻿# Importar las librerías necesarias
 Add-Type -AssemblyName PresentationFramework
 
 # Determinar si el sistema operativo es de 64 bits
