@@ -15,9 +15,11 @@
 ```
 ```
 
-## Features
+## Features - Características
 
-| Office Soportados |           Feature             |
+# Microsoft Office Support - Soporte de Microsoft Office
+
+| Office Support |             Feature              |
 |  :-----------: | :------------------------------: |
 |       ✅       | O365ProPlusRetail                |
 |       ✅       | O365ProPlusEEANoTeamsRetail      |
@@ -32,38 +34,79 @@
 |       ✅       | VisioProRetail                   |
 | :------------: | :------------------------------: |
 
+# Support languages - lenguajes soportados
 
-            <ComboBoxItem Content="O365HomePremRetail"/>
-            <ComboBoxItem Content="O365SmallBusPremRetail"/>
-            <ComboBoxItem Content="ProjectProRetail"/>
-            <ComboBoxItem Content="VisioProRetail"/>
+| Support languages |            Feature             |
+|:--------------:   |:------------------------------:|
+|       ✅         | English [en-US]                |
+|       ✅         | Arabic [ar-SA]                 |
+|       ✅         | Bulgarian [bg-BG]              |
+|       ✅         | Czech [cs-CZ]                  |
+|       ✅         | Danish [da-DK]                 |
+|       ✅         | German [de-DE]                 |
+|       ✅         | Greek [el-GR]                  |
+|       ✅         | English UK [en-GB]             |
+|       ✅         | Spanish [es-ES]                |
+|       ✅         | Spanish Mexico [es-MX]         |
+|       ✅         | Estonian [et-EE]               |
+|       ✅         | Finnish [fi-FI]                |
+|       ✅         | French Canada [fr-CA]          |
+|       ✅         | French [fr-FR]                 |
+|       ✅         | Hebrew [he-IL]                 |
+|       ✅         | Hindi [hi-IN]                  |
+|       ✅         | Croatian [hr-HR]               |
+|       ✅         | Hungarian [hu-HU]              |
+|       ✅         | Indonesian [id-ID]             |
+|       ✅         | Italian [it-IT]                |
+|       ✅         | Japanese [ja-JP]               |
+|       ✅         | Kazakh [kk-KZ]                 |
+|       ✅         | Korean [ko-KR]                 |
+|       ✅         | Lithuanian [lt-LT]             |
+|       ✅         | Latvian [lv-LV]                |
+|       ✅         | Malay (Latin) [ms-MY]          |
+|       ✅         | Norwegian Bokmal [nb-NO]       |
+|       ✅         | Dutch [nl-NL]                  |
+|       ✅         | Polish [pl-PL]                 |
+|       ✅         | Portuguese (Brazil) [pt-BR]    |
+|       ✅         | Portuguese (Portugal) [pt-PT]  |
+|       ✅         | Romanian [ro-RO]               |
+|       ✅         | Russian [ru-RU]                |
+|       ✅         | Slovak [sk-SK]                 |
+|       ✅         | Slovenian [sl-SI]              |
+|       ✅         | Serbian (Latin, Serbia) [sr-latn-CS] |
+|       ✅         | Serbian (Latin, Serbia) [sr-latn-RS] |
+|       ✅         | Swedish [sv-SE]                |
+|       ✅         | Thai [th-TH]                   |
+|       ✅         | Turkish [tr-TR]                |
+|       ✅         | Ukrainian [uk-UA]              |
+|       ✅         | Vietnamese [vi-VN]             |
+|       ✅         | Chinese (Simplified) [zh-CN]   |
+|       ✅         | Chinese (Traditional) [zh-TW]  |
+| :--------------: | :----------------------------: |
 
-| Other  |                     Feature                     |
-| :------------: | :---------------------------------------------: |
-|       ✅        |   Get a random meme             |
-|       ✅        |   Text to speech                |
-|       ✅        |   Writing feature 				|
-|       ✅        |   What Anime Is This 			|
-|       ✅        |   Url2Img ( Screeenshot Web )   |
-|       ✅        |   Simsimi		                |
 
-| Group  |                     Feature               |
-| :-----------: | :--------------------------------: |
-|       ✅        |   Tagall/Mentionall member       |
-|       ✅        |   Tagall2/Mentionall member       |
-|       ✅        |   Tagall3/Mentionall member       |
-|       ✅        |   Kick Member Group	             |
-|       ✅        |   Add Member Group	             |
-|       ✅        |   Get List Admins Group          |
-|       ✅        |   Get Group Invite Link          |
-|       ✅        |   Bot leave the group            |
-
-| Owner Bot  |                     Feature           |
-| :-----------: | :--------------------------------: |
-|       ✅        |   Set Prefix                     |
-|       ✅        |   Broadcast                      |
-|       ✅        |   Clear All Chats                |
-
+# Convert Office VL (Volume License)
+| Product        |       Version       | Office Support |
+|:---------------|:--------------------|:--------------:|
+| Office 2016    | STD VL              |       ✅       |
+| Office 2016    | PRO VL              |       ✅       |
+| Office 2019    | STD VL              |       ✅       |
+| Office 2019    | PRO VL              |       ✅       |
+| Office 2021    | STD VL              |       ✅       |
+| Office 2021    | PRO VL              |       ✅       |
+| Project 2016   | STD VL              |       ✅       |
+| Project 2016   | PRO VL              |       ✅       |
+| Project 2019   | STD VL              |       ✅       |
+| Project 2019   | PRO VL              |       ✅       |
+| Project 2021   | STD VL              |       ✅       |
+| Project 2021   | PRO VL              |       ✅       |
+| Visio 2016     | STD VL              |       ✅       |
+| Visio 2016     | PRO VL              |       ✅       |
+| Visio 2019     | STD VL              |       ✅       |
+| Visio 2019     | PRO VL              |       ✅       |
+| Visio 2021     | STD VL              |       ✅       |
+| Visio 2021     | PRO VL              |       ✅       |
+|:---------------|:--------------------|:--------------:|
 
 ## Group
 * <a href=""><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
