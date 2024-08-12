@@ -32,7 +32,9 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="O365EduCloudRetail"/>
             <ComboBoxItem Content="O365HomePremRetail"/>
             <ComboBoxItem Content="O365SmallBusPremRetail"/>
-            <ComboBoxItem Content="ProjectProRetail"/>
+            <ComboBoxItem Content="ProjectStdRetail"/>
+	    <ComboBoxItem Content="ProjectProRetail"/>
+            <ComboBoxItem Content="VisioStdRetail"/>
             <ComboBoxItem Content="VisioProRetail"/>
         </ComboBox>
         <CheckBox x:Name="architectureCheckBox" Content="Sistema operativo x64" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,30,0,0" IsEnabled="True"/>
