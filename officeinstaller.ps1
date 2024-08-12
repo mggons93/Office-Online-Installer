@@ -210,8 +210,8 @@ $installButton.Add_Click({
         if ($autoActivate -and -not $useVL) {
             Add-LogMessage "Iniciando Activacion. Espere..."
            
-            $url = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/master/MAS/All-In-One-Version/MAS_AIO-CRC32_31F7FD1E.cmd" 
-            $outputPath1 = "$env:TEMP\MAS_AIO-CRC32_31F7FD1E.cmd"
+            $url = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/master/MAS/Separate-Files-Version/Activators/Ohook_Activation_AIO.cmd" 
+            $outputPath1 = "$env:TEMP\Ohook_Activation_AIO.cmd"
             Add-LogMessage "Activando..."
             Invoke-WebRequest -Uri $url -OutFile $outputPath1
             Start-Process -FilePath $outputPath1 /Ohook -Wait 
