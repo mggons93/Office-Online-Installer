@@ -88,28 +88,28 @@
 # Convert Office VL (Volume License)
 | Product        |       Version       | Office Support |
 |:---------------|:--------------------|:--------------:|
-| Office 2016    | STD VL              |       ✅       |
-| Office 2016    | PRO VL              |       ✅       |
-| Office 2019    | STD VL              |       ✅       |
-| Office 2019    | PRO VL              |       ✅       |
-| Office 2021    | STD VL              |       ✅       |
-| Office 2021    | PRO VL              |       ✅       |
-| Project 2016   | STD VL              |       ✅       |
-| Project 2016   | PRO VL              |       ✅       |
-| Project 2019   | STD VL              |       ✅       |
-| Project 2019   | PRO VL              |       ✅       |
-| Project 2021   | STD VL              |       ✅       |
-| Project 2021   | PRO VL              |       ✅       |
-| Visio 2016     | STD VL              |       ✅       |
-| Visio 2016     | PRO VL              |       ✅       |
-| Visio 2019     | STD VL              |       ✅       |
-| Visio 2019     | PRO VL              |       ✅       |
-| Visio 2021     | STD VL              |       ✅       |
-| Visio 2021     | PRO VL              |       ✅       |
-|:---------------|:--------------------|:--------------:|
+| Office 2016    | StandardVL          |       ✅       |
+| Office 2016    | ProPlusVL           |       ✅       |
+| Office 2019    | Standard2019VL      |       ✅       |
+| Office 2019    | ProPlus2019VL       |       ✅       |
+| Office 2021    | Standard2021VL      |       ✅       |
+| Office 2021    | ProPlus2021VL       |       ✅       |
+| Project 2016   | ProjectStdVL        |       ✅       |
+| Project 2016   | ProjectProVL        |       ✅       |
+| Project 2019   | ProjectStd2019VL    |       ✅       |
+| Project 2019   | ProjectPro2019VL    |       ✅       |
+| Project 2021   | ProjectStd2021VL    |       ✅       |
+| Project 2021   | ProjectPro2021VL    |       ✅       |
+| Visio 2016     | VisioStdVL          |       ✅       |
+| Visio 2016     | VisioProVL          |       ✅       |
+| Visio 2019     | VisioStd2019VL      |       ✅       |
+| Visio 2019     | VisioPro2019VL      |       ✅       |
+| Visio 2021     | VisioStd2021VL      |       ✅       |
+| Visio 2021     | VisioPro2021VL      |       ✅       |
+|:---------------|:--------------------|:---------------:|
 
 ## Group
-* <a href=""><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
+* <a href="https://chat.whatsapp.com/EcBkUA3QHCk5cWhyKc0eUZ"><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
 
 ### Donate
 * <a href="https://paypal.me/malagons"><img alt="Paypal" src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" /></a>
