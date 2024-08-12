@@ -15,10 +15,11 @@
 ```
 ```
 
-## Features - Características
+## Features
+## Características
 
-# Microsoft Office Support - Soporte de Microsoft Office
-
+# Microsoft Office Support 
+# Soporte de Microsoft Office
 | Office Support |             Feature              |
 |  :-----------: | :------------------------------: |
 |       ✅       | O365ProPlusRetail                |
@@ -34,8 +35,8 @@
 |       ✅       | VisioProRetail                   |
 | :------------: | :------------------------------: |
 
-# Support languages - lenguajes soportados
-
+# Support languages
+# lenguajes soportados
 | Support languages |            Feature             |
 |:--------------:   |:------------------------------:|
 |       ✅         | English [en-US]                |
@@ -86,6 +87,7 @@
 
 
 # Convert Office VL (Volume License)
+# Convertir Office VL (licencia por volumen)
 | Product        |       Version       | Office Support |
 |:---------------|:--------------------|:--------------:|
 | Office 2016    | StandardVL          |       ✅       |
