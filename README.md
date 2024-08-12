@@ -5,13 +5,13 @@
 ## Para el uso de el script puedes usar la siguiente entrada con el Powershell
 
 ```bash
-> irm https://cutt.ly/0ecZESJt | iex
+irm https://cutt.ly/0ecZESJt | iex
 ```
 
 ## To use the script you can use the following entry with Powershell
 
 ```bash
-> irm https://cutt.ly/0ecZESJt | iex
+irm https://cutt.ly/0ecZESJt | iex
 ```
 ```
 ## Features
