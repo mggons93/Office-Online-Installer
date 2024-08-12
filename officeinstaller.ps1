@@ -40,7 +40,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <CheckBox x:Name="architectureCheckBox" Content="Sistema operativo x64" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,30,0,0" IsEnabled="True"/>
 
         <!-- Fila 2 -->
-        <TextBlock Text="Selección de Idioma:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0"/>
+        <TextBlock Text="Seleccion de Idioma:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0"/>
         <ComboBox x:Name="languageComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,90,0,0">
            <ComboBoxItem Content="English [en-US]"/>
             <ComboBoxItem Content="Arabic [ar-SA]"/>
@@ -88,12 +88,12 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Chinese (Traditional) [zh-TW]"/>
             <!-- Agrega aquí más opciones si es necesario -->
         </ComboBox>
-        <CheckBox x:Name="vlActivationCheckBox" Content="Usar Activación VL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,90,0,0"/>
+        <CheckBox x:Name="vlActivationCheckBox" Content="Usar Activacion VL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,90,0,0"/>
         
         <!-- Opciones de Activación VL solo si se activa VL -->
         <StackPanel x:Name="vlOptionsPanel" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,130,0,0" Orientation="Horizontal">
             <StackPanel Orientation="Vertical" Margin="0,0,10,0">
-                <TextBlock Text="Seleccione la edición:" HorizontalAlignment="Left" Margin="0,0,0,5"/>
+                <TextBlock Text="Seleccione la edicion:" HorizontalAlignment="Left" Margin="0,0,0,5"/>
                 <ComboBox x:Name="editionComboBox" HorizontalAlignment="Left" Width="200">
                     <ComboBoxItem Content="Office 2016 STD VL"/>
                     <ComboBoxItem Content="Office 2016 PRO VL"/>
@@ -123,7 +123,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
 
         <!-- Botón de instalación y log -->
         <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="10,200,0,0"/>
-        <CheckBox x:Name="autoActivationCheckBox" Content="Activación Automática" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,205,0,0"/>
+        <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,205,0,0"/>
         <TextBlock Text="Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,240,0,0"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="410" Height="100" Margin="10,260,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
     </Grid>
