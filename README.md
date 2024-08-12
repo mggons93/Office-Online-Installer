@@ -1,49 +1,42 @@
 <p align="center">
 <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Microsoft_365_logo.png"/>
 </p>
-<p align="center">
-<a href="#"><img title="Whatsapp-Bot" src="https://img.shields.io/badge/Termux Whatsapp Bot-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
-</p>
 
-
-## Clone this project
+## Para el uso de el script puedes usar la siguiente entrada con el Powershell
 
 ```bash
-> git clone https://github.com/mggons/bot_1.1
+> irm https://cutt.ly/0ecZESJt | iex
 ```
 
-## Install the dependencies:
-Before running the below command, make sure you're in the project directory that
-you've just cloned!!
+## To use the script you can use the following entry with Powershell
 
 ```bash
-> cd termux-wabot
-> bash install.sh
+> irm https://cutt.ly/0ecZESJt | iex
 ```
-
-### Usage
-```bash
-> npm start
-```
-
-### Settings
-```json
-{
-	"prefix": ".",
-	"ownerNumber": "62858xxxxx",
-	"apiKey": "Your ApiKey here"
-}
 ```
 
 ## Features
 
-| Sticker Creator |                Feature           |
-| :-----------: | :--------------------------------: |
-|       ✅       | Send Photo with Caption          |
-|       ✅       | Reply A Photo                    |
-|       ✅       | Reply A Video or GIF             |
-|       ✅       | Send Video or GIF with Caption   |
-|       ✅       | Reply A Sticker ( sticker to image ) |
+| Office Soportados |           Feature             |
+|  :-----------: | :------------------------------: |
+|       ✅       | O365ProPlusRetail                |
+|       ✅       | O365ProPlusEEANoTeamsRetail      |
+|       ✅       | O365BusinessRetail               |
+|       ✅       | O365BusinessEEANoTeamsRetail     |
+|       ✅       | O365EduCloudRetail               |
+|       ✅       | O365HomePremRetail               |
+|       ✅       | O365SmallBusPremRetail           |
+|       ✅       | ProjectStdRetail                 |
+|       ✅       | ProjectProRetail                 |
+|       ✅       | VisioStdRetail                   |
+|       ✅       | VisioProRetail                   |
+| :------------: | :------------------------------: |
+
+
+            <ComboBoxItem Content="O365HomePremRetail"/>
+            <ComboBoxItem Content="O365SmallBusPremRetail"/>
+            <ComboBoxItem Content="ProjectProRetail"/>
+            <ComboBoxItem Content="VisioProRetail"/>
 
 | Other  |                     Feature                     |
 | :------------: | :---------------------------------------------: |
