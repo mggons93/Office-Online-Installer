@@ -95,18 +95,24 @@ irm https://cutt.ly/0ecZESJt | iex
 | Office 2019    | ProPlus2019VL       |       ✅       |
 | Office 2021    | Standard2021VL      |       ✅       |
 | Office 2021    | ProPlus2021VL       |       ✅       |
+| Office 2024    | Standard2024VL      |       ❌       |
+| Office 2024    | ProPlus2024VL       |       ❌       |
 | Project 2016   | ProjectStdVL        |       ✅       |
 | Project 2016   | ProjectProVL        |       ✅       |
 | Project 2019   | ProjectStd2019VL    |       ✅       |
 | Project 2019   | ProjectPro2019VL    |       ✅       |
 | Project 2021   | ProjectStd2021VL    |       ✅       |
 | Project 2021   | ProjectPro2021VL    |       ✅       |
+| Project 2024   | ProjectStd2024VL    |       ❌       |
+| Project 2024   | ProjectPro2024VL    |       ❌       |
 | Visio 2016     | VisioStdVL          |       ✅       |
 | Visio 2016     | VisioProVL          |       ✅       |
 | Visio 2019     | VisioStd2019VL      |       ✅       |
 | Visio 2019     | VisioPro2019VL      |       ✅       |
 | Visio 2021     | VisioStd2021VL      |       ✅       |
 | Visio 2021     | VisioPro2021VL      |       ✅       |
+| Visio 2024     | VisioStd2024VL      |       ❌       |
+| Visio 2024     | VisioPro2024VL      |       ❌       |
 |:---------------|:--------------------|:---------------:|
 
 ```
