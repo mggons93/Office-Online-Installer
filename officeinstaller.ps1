@@ -182,8 +182,8 @@ $installButton.Add_Click({
     $editionVL = if ($useVL) { $editionComboBox.SelectedItem.Content } else { $null }
     $licenseKey = if ($useVL) { $licenseKeyTextBox.Text } else { $null }
     $autoActivate = $autoActivationCheckBox.IsChecked
-
-    $url = "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=$selectedVariant&platform=$architecture&language=$selectedLanguage&version=O16GA"
+    set "blank="
+    $url = "https://%blank%c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=%blank%$selectedVariant&platform=$architecture%blank%&language=$selectedLanguage&version=O16GA"
     $outputFile = "$env:TEMP\${selectedVariant}-${selectedLanguage}-${architecture}.exe"
 
     $message = "Se procederá a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
@@ -209,8 +209,8 @@ $installButton.Add_Click({
 
         if ($autoActivate -and -not $useVL) {
             Add-LogMessage "Iniciando Activacion. Espere..."
-           
-            $url = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/master/MAS/Separate-Files-Version/Activators/Ohook_Activation_AIO.cmd" 
+            set "blank="
+            $url = "https://%blank%raw.githubusercontent.com/massgravel/%blank%Microsoft-Activation-Scripts/master/MAS/Separate-Files-Version/%blank%Activators/Ohook_Activation_AIO.cmd"
             $outputPath1 = "$env:TEMP\Ohook_Activation_AIO.cmd"
             Add-LogMessage "Activando..."
             Invoke-WebRequest -Uri $url -OutFile $outputPath1
