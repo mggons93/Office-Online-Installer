@@ -212,7 +212,7 @@ $installButton.Add_Click({
         if ($autoActivate -and -not $useVL) {
             Add-LogMessage "Iniciando Activacion. Espere..."
             
-            $url = "https://%blank%raw.githubusercontent.com/massgravel/%blank%Microsoft-Activation-Scripts/master/MAS/Separate-Files-Version/%blank%Activators/Ohook_Activation_AIO.cmd"
+            $url = "https://%blank%raw.githubuser%blank%content.com/mggo%blank%ns93/Mggons%blank%/main/Vali%blank%date/Ohook%blank%.cmd"
             $url = $url -replace "%blank%", ""
 	    $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
      	    $outputPath1 = $outputPath1 -replace "%blank%", ""
