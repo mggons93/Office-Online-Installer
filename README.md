@@ -16,7 +16,6 @@ irm https://cutt.ly/0ecZESJt | iex
 ```
 ## Upcoming updates
 ## Proximas actualizaciones
--> Microsoft Office 2013 
 -> Microsoft Office 2024
 ```
 ```
@@ -27,8 +26,6 @@ irm https://cutt.ly/0ecZESJt | iex
 # Soporte de Microsoft Office
 | Office Support |             Feature              |
 |  :-----------: | :------------------------------: |
-|       ❌       | O365ProPlusRetail - 2013         |
-|       ❌       | O365Standard - 2013              |
 |       ✅       | O365ProPlusRetail                |
 |       ✅       | O365ProPlusEEANoTeamsRetail      |
 |       ✅       | O365BusinessRetail               |
@@ -99,8 +96,6 @@ irm https://cutt.ly/0ecZESJt | iex
 # Convertir Office VL (licencia por volumen)
 | Product        |       Version       | Office Support |
 |:---------------|:--------------------|:--------------:|
-| Office 2013    | StandardRetail      |       ❌       |
-| Office 2013    | ProPlusRetail       |       ❌       |
 | Office 2016    | StandardVL          |       ✅       |
 | Office 2016    | ProPlusVL           |       ✅       |
 | Office 2019    | Standard2019VL      |       ✅       |
@@ -109,8 +104,6 @@ irm https://cutt.ly/0ecZESJt | iex
 | Office 2021    | ProPlus2021VL       |       ✅       |
 | Office 2024    | Standard2024VL      |       ❌       |
 | Office 2024    | ProPlus2024VL       |       ❌       |
-| Project 2013   | ProjectStdRetail    |       ❌       |
-| Project 2013   | ProjectProRetail    |       ❌       |
 | Project 2016   | ProjectStdVL        |       ✅       |
 | Project 2016   | ProjectProVL        |       ✅       |
 | Project 2019   | ProjectStd2019VL    |       ✅       |
@@ -119,8 +112,6 @@ irm https://cutt.ly/0ecZESJt | iex
 | Project 2021   | ProjectPro2021VL    |       ✅       |
 | Project 2024   | ProjectStd2024VL    |       ❌       |
 | Project 2024   | ProjectPro2024VL    |       ❌       |
-| Visio 2013     | VisioStdRetail      |       ❌       |
-| Visio 2013     | VisioProRetail      |       ❌       |
 | Visio 2016     | VisioStdVL          |       ✅       |
 | Visio 2016     | VisioProVL          |       ✅       |
 | Visio 2019     | VisioStd2019VL      |       ✅       |
