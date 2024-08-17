@@ -14,13 +14,13 @@ irm https://cutt.ly/0ecZESJt | iex
 irm https://cutt.ly/0ecZESJt | iex
 ```
 ```
-## Features
-## Características
-
 ## Upcoming updates
 ## Proximas actualizaciones
 -> Microsoft Office 2013 
 -> Microsoft Office 2024
+
+## Features
+## Características
 
 # Microsoft Office Support 
 # Soporte de Microsoft Office
