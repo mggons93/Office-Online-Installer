@@ -188,7 +188,7 @@ $installButton.Add_Click({
     $outputFile = "$env:TEMP\${selectedVariant}-%blank%${selectedLanguage}-%blank%${architecture}.exe"
     $outputFile = $outputFile -replace "%blank%", ""
     
-    $message = "Se procederá a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
+    $message = "Se procedera a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
     if ($useVL) {
         $message += "`n\n- Edición VL: $editionVL"
         $message += "`n- Clave de licencia: $licenseKey"
@@ -196,18 +196,18 @@ $installButton.Add_Click({
     $message += "`n- Variante: $selectedVariant"
     $message += "`n- Idioma: $selectedLanguage"
     $message += "`n- Sistema: $architecture"
-    $message += "`n- Activación Automática: $($autoActivate -eq $true)"
-    $result = [System.Windows.MessageBox]::Show($message, "Confirmar Instalación", [System.Windows.MessageBoxButton]::YesNo, [System.Windows.MessageBoxImage]::Question)
+    $message += "`n- Activacion Automatica: $($autoActivate -eq $true)"
+    $result = [System.Windows.MessageBox]::Show($message, "Confirmar Instalacion", [System.Windows.MessageBoxButton]::YesNo, [System.Windows.MessageBoxImage]::Question)
 
     if ($result -eq [System.Windows.MessageBoxResult]::Yes) {
         Add-LogMessage "Descargando $selectedVariant $selectedLanguage para sistema $architecture..."
-		Add-LogMessage "Descarga completada. Iniciando la instalación..."
+		Add-LogMessage "Descarga completada. Iniciando la instalacion..."
         Invoke-WebRequest -Uri $url -OutFile $outputFile
        
         Start-Process -FilePath $outputFile -Wait
         "taskkill /f /im OfficeC2RClient.exe" | cmd
 
-        Add-LogMessage "Instalación completada."
+        Add-LogMessage "Instalacion completada."
 
         if ($autoActivate -and -not $useVL) {
             Add-LogMessage "Iniciando Activacion. Espere..."
@@ -222,7 +222,7 @@ $installButton.Add_Click({
             Add-LogMessage "Eliminando Archivos Usados..."
 	        Remove-Item -Path $outputFile -Force
             Remove-Item -Path $outputPath1 -Force
-            Add-LogMessage "Activación completada."
+            Add-LogMessage "Activacion completada."
         }
 
        if ($useVL) {
@@ -278,7 +278,7 @@ $installButton.Add_Click({
             Add-LogMessage "Instalando licencia: $licenseKey"
             cscript ospp.vbs /inpkey:$licenseKey
             cscript ospp.vbs /act
-            Add-LogMessage "Activación completada."
+            Add-LogMessage "Activacion completada."
         }
     }
 })
