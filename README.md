@@ -33,8 +33,6 @@ irm https://cutt.ly/0ecZESJt | iex
 |       ✅       | O365EduCloudRetail               |
 |       ✅       | O365HomePremRetail               |
 |       ✅       | O365SmallBusPremRetail           |
-|       ❌       | ProjectStdRetail - 2013          |
-|       ❌       | ProjectProRetail - 2013          |
 |       ✅       | ProjectStdRetail                 |
 |       ✅       | ProjectProRetail                 |
 |       ✅       | VisioStdRetail                   |
