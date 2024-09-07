@@ -211,7 +211,7 @@ $installButton.Add_Click({
     
     $message = "Se procedera a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
     if ($useVL) {
-        $message += "`n\n- Edición VL: $editionVL"
+        $message += "`n- Edición VL: $editionVL"
         $message += "`n- Clave de licencia: $licenseKey"
     }
     $message += "`n- Variante: $selectedVariant"
