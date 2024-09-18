@@ -37,6 +37,11 @@ irm https://cutt.ly/0ecZESJt | iex
 |       ✅       | ProjectProRetail                 |
 |       ✅       | VisioStdRetail                   |
 |       ✅       | VisioProRetail                   |
+|       ✅       | ProPlus2024Retail                |
+|       ✅       | ProjectStd2024Retail             |
+|       ✅       | ProjectPro2024Retail             |
+|       ✅       | VisioStd2024Retail               |
+|       ✅       | VisioPro2024Retail               |
 | :------------: | :------------------------------: |
 
 # Support languages
