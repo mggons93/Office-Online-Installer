@@ -16,7 +16,7 @@ irm https://cutt.ly/0ecZESJt | iex
 ```
 ## Upcoming updates
 ## Proximas actualizaciones
--> Microsoft Office 2024
+-> Microsoft Office 2024 -> Integrado el 18/09/2024
 ```
 ```
 ## Features
