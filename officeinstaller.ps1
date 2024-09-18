@@ -57,6 +57,11 @@ $consolePtr = [Win32]::GetConsoleWindow()
 	    <ComboBoxItem Content="ProjectProRetail"/>
             <ComboBoxItem Content="VisioStdRetail"/>
             <ComboBoxItem Content="VisioProRetail"/>
+	    <ComboBoxItem Content="ProPlus2024Retail"/>
+	    <ComboBoxItem Content="ProjectStd2024Retail"/>
+     	    <ComboBoxItem Content="ProjectPro2024Retail"/>
+	    <ComboBoxItem Content="VisioStd2024Retail"/>
+            <ComboBoxItem Content="VisioPro2024Retail"/>            
         </ComboBox>
         <CheckBox x:Name="architectureCheckBox" Content="Sistema operativo x64" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,30,0,0" IsEnabled="True"/>
 
