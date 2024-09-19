@@ -125,8 +125,8 @@ irm https://cutt.ly/0ecZESJt | iex
 | Visio 2024     | VisioPro2024VL      |       ❌       |
 |:---------------|:--------------------|:---------------:|
 
-##Note
-##Notas
+# Note
+# Notas
 las Ediciones VL aun no se encuentran disponibles, pero se pueden activar las versiones retail de manera normal
 ```
 ## Group
