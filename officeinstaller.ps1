@@ -70,50 +70,47 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <!-- Fila 2 -->
         <TextBlock Text="Seleccion de Idioma:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0"/>
         <ComboBox x:Name="languageComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,90,0,0">
-           <ComboBoxItem Content="English [en-US]"/>
-            <ComboBoxItem Content="Arabic [ar-SA]"/>
-            <ComboBoxItem Content="Bulgarian [bg-BG]"/>
-            <ComboBoxItem Content="Czech [cs-CZ]"/>
-            <ComboBoxItem Content="Danish [da-DK]"/>
-            <ComboBoxItem Content="German [de-DE]"/>
-            <ComboBoxItem Content="Greek [el-GR]"/>
-            <ComboBoxItem Content="English UK [en-GB]"/>
-            <ComboBoxItem Content="Spanish [es-ES]"/>
-            <ComboBoxItem Content="Spanish Mexico [es-MX]"/>
-            <ComboBoxItem Content="Estonian [et-EE]"/>
-            <ComboBoxItem Content="Finnish [fi-FI]"/>
-            <ComboBoxItem Content="French Canada [fr-CA]"/>
-            <ComboBoxItem Content="French [fr-FR]"/>
-            <ComboBoxItem Content="Hebrew [he-IL]"/>
-            <ComboBoxItem Content="Hindi [hi-IN]"/>
-            <ComboBoxItem Content="Croatian [hr-HR]"/>
-            <ComboBoxItem Content="Hungarian [hu-HU]"/>
-            <ComboBoxItem Content="Indonesian [id-ID]"/>
-            <ComboBoxItem Content="Italian [it-IT]"/>
-            <ComboBoxItem Content="Japanese [ja-JP]"/>
-            <ComboBoxItem Content="Kazakh [kk-KZ]"/>
-            <ComboBoxItem Content="Korean [ko-KR]"/>
-            <ComboBoxItem Content="Lithuanian [lt-LT]"/>
-            <ComboBoxItem Content="Latvian [lv-LV]"/>
-            <ComboBoxItem Content="Malay (Latin) [ms-MY]"/>
-            <ComboBoxItem Content="Norwegian Bokmal [nb-NO]"/>
-            <ComboBoxItem Content="Dutch [nl-NL]"/>
-            <ComboBoxItem Content="Polish [pl-PL]"/>
-            <ComboBoxItem Content="Portuguese (Brazil) [pt-BR]"/>
-            <ComboBoxItem Content="Portuguese (Portugal) [pt-PT]"/>
-            <ComboBoxItem Content="Romanian [ro-RO]"/>
-            <ComboBoxItem Content="Russian [ru-RU]"/>
-            <ComboBoxItem Content="Slovak [sk-SK]"/>
-            <ComboBoxItem Content="Slovenian [sl-SI]"/>
-            <ComboBoxItem Content="Serbian (Latin, Serbia) [sr-latn-CS]"/>
-            <ComboBoxItem Content="Serbian (Latin, Serbia) [sr-latn-RS]"/>
-            <ComboBoxItem Content="Swedish [sv-SE]"/>
-            <ComboBoxItem Content="Thai [th-TH]"/>
-            <ComboBoxItem Content="Turkish [tr-TR]"/>
-            <ComboBoxItem Content="Ukrainian [uk-UA]"/>
-            <ComboBoxItem Content="Vietnamese [vi-VN]"/>
-            <ComboBoxItem Content="Chinese (Simplified) [zh-CN]"/>
-            <ComboBoxItem Content="Chinese (Traditional) [zh-TW]"/>
+	    <ComboBoxItem Content="English" Tag="en-US"/>
+            <ComboBoxItem Content="Arabic" Tag="ar-SA"/>
+            <ComboBoxItem Content="Bulgarian" Tag="bg-BG"/>
+            <ComboBoxItem Content="Czech" Tag="cs-CZ"/>
+            <ComboBoxItem Content="Danish" Tag="da-DK"/>
+            <ComboBoxItem Content="German" Tag="de-DE"/>
+            <ComboBoxItem Content="Greek" Tag="el-GR"/>
+            <ComboBoxItem Content="English UK" Tag="en-GB"/>
+            <ComboBoxItem Content="Spanish" Tag="es-ES"/>
+            <ComboBoxItem Content="Spanish Mexico" Tag="es-MX"/>
+            <ComboBoxItem Content="Estonian" Tag="et-EE"/>
+            <ComboBoxItem Content="Finnish" Tag="fi-FI"/>
+            <ComboBoxItem Content="French Canada" Tag="fr-CA"/>
+            <ComboBoxItem Content="French" Tag="fr-FR"/>
+            <ComboBoxItem Content="Hebrew" Tag="he-IL"/>
+            <ComboBoxItem Content="Hindi" Tag="hi-IN"/>
+            <ComboBoxItem Content="Croatian" Tag="hr-HR"/>
+            <ComboBoxItem Content="Hungarian" Tag="hu-HU"/>
+            <ComboBoxItem Content="Indonesian" Tag="id-ID"/>
+            <ComboBoxItem Content="Italian" Tag="it-IT"/>
+            <ComboBoxItem Content="Japanese" Tag="ja-JP"/>
+            <ComboBoxItem Content="Kazakh" Tag="kk-KZ"/>
+            <ComboBoxItem Content="Korean" Tag="ko-KR"/>
+            <ComboBoxItem Content="Lithuanian" Tag="lt-LT"/>
+            <ComboBoxItem Content="Latvian" Tag="lv-LV"/>
+            <ComboBoxItem Content="Malay (Latin)" Tag="ms-MY"/>
+            <ComboBoxItem Content="Norwegian Bokmal" Tag="nb-NO"/>
+            <ComboBoxItem Content="Dutch" Tag="nl-NL"/>
+            <ComboBoxItem Content="Polish" Tag="pl-PL"/>
+            <ComboBoxItem Content="Portuguese (Brazil)" Tag="pt-BR"/>
+            <ComboBoxItem Content="Portuguese (Portugal)" Tag="pt-PT"/>
+            <ComboBoxItem Content="Romanian" Tag="ro-RO"/>
+            <ComboBoxItem Content="Russian" Tag="ru-RU"/>
+            <ComboBoxItem Content="Slovak" Tag="sk-SK"/>
+            <ComboBoxItem Content="Slovenian" Tag="sl-SI"/>
+            <ComboBoxItem Content="Swedish" Tag="sv-SE"/>
+            <ComboBoxItem Content="Thai" Tag="th-TH"/>
+            <ComboBoxItem Content="Turkish" Tag="tr-TR"/>
+            <ComboBoxItem Content="Ukrainian" Tag="uk-UA"/>
+            <ComboBoxItem Content="Chinese (Simplified)" Tag="zh-CN"/>
+            <ComboBoxItem Content="Chinese (Traditional)" Tag="zh-TW"/>
             <!-- Agrega aquí más opciones si es necesario -->
         </ComboBox>
         <CheckBox x:Name="vlActivationCheckBox" Content="Usar Activacion VL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,90,0,0"/>
@@ -203,7 +200,7 @@ $autoActivationCheckBox.Add_Unchecked({
 
 $installButton.Add_Click({
     $selectedVariant = $variantComboBox.SelectedItem.Content
-    $selectedLanguageFull = $languageComboBox.SelectedItem.Content
+    $selectedLanguageFull = $languageComboBox.SelectedItem.Tag
     $selectedLanguage = $selectedLanguageFull -replace '.*\[(.*?)\]', '$1'
     $architecture = if ($architectureCheckBox.IsChecked) { "x64" } else { "x86" }
     $useVL = $vlActivationCheckBox.IsChecked
