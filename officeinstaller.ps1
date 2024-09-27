@@ -87,7 +87,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Project Standard 2019" Tag="ProjectStd2019Retail"/>
             <ComboBoxItem Content="Project Professional 2019" Tag="ProjectPro2019Retail"/>
             <ComboBoxItem Content="Visio Standard 2019" Tag="VisioStd2019Retail"/>
-            <ComboBoxItem Content="Visio Professional 2019 Tag="VisioPro2019Retail"/>
+            <ComboBoxItem Content="Visio Professional 2019" Tag="VisioPro2019Retail"/>
             <ComboBoxItem Content="---------------------"/>
             <!-- Edición 2016 -->
             <ComboBoxItem Content="Office Pro Plus 2016" Tag="ProPlusRetail"/>
@@ -97,7 +97,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Project Standard 2016" Tag="ProjectStdRetail"/>
             <ComboBoxItem Content="Project Professional 2016" Tag="ProjectProRetail"/>
             <ComboBoxItem Content="Visio Standard 2016" Tag="VisioStdRetail"/>
-            <ComboBoxItem Content="Visio Professional 2016 Tag="VisioProRetail"/>    
+            <ComboBoxItem Content="Visio Professional 2016" Tag="VisioProRetail"/>    
         </ComboBox>
         <CheckBox x:Name="architectureCheckBox" Content="Sistema operativo x64" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,30,0,0" IsEnabled="True"/>
 
