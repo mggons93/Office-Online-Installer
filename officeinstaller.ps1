@@ -47,8 +47,8 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <TextBlock Text="Seleccionar Office 365:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
         <ComboBox x:Name="variantComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,30,0,0">
             <!-- Office 365 -->
-            <ComboBoxItem Content="Office 365 Professional Plus" Tag="O365ProPlusRetail"/>
-            <ComboBoxItem Content="Office 365 Professional Plus (No Teams)" Tag="O365ProPlusEEANoTeamsRetail"/>
+            <ComboBoxItem Content="Office 365 Pro Plus" Tag="O365ProPlusRetail"/>
+            <ComboBoxItem Content="Office 365 Pro Plus (No Teams)" Tag="O365ProPlusEEANoTeamsRetail"/>
             <ComboBoxItem Content="Office 365 Business" Tag="O365BusinessRetail"/>
             <ComboBoxItem Content="Office 365 Business (No Teams)" Tag="O365BusinessEEANoTeamsRetail"/>
             <ComboBoxItem Content="Office 365 Education Cloud" Tag="O365EduCloudRetail"/>
