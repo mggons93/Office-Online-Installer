@@ -202,7 +202,7 @@ $autoActivationCheckBox.Add_Unchecked({
 })
 
 $installButton.Add_Click({
-    $selectedVariant = $variantComboBox.SelectedItem
+    $selectedVariant = $variantComboBox.SelectedItem.Content
     $selectedLanguageFull = $languageComboBox.SelectedItem.Content
     $selectedLanguage = $selectedLanguageFull -replace '.*\[(.*?)\]', '$1'
     $architecture = if ($architectureCheckBox.IsChecked) { "x64" } else { "x86" }
