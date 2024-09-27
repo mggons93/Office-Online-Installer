@@ -54,10 +54,10 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Office 365 Education Cloud" Tag="O365EduCloudRetail"/>
             <ComboBoxItem Content="Office 365 Home Premium" Tag="O365HomePremRetail"/>
             <ComboBoxItem Content="Office 365 Small Business Premium" Tag="O365SmallBusPremRetail"/>
-            <ComboBoxItem Content="Project Standard" Tag="ProjectStdRetail"/>
-            <ComboBoxItem Content="Project Professional" Tag="ProjectProRetail"/>
-            <ComboBoxItem Content="Visio Standard" Tag="VisioStdRetail"/>
-            <ComboBoxItem Content="Visio Professional" Tag="VisioProRetail"/>
+            <ComboBoxItem Content="Office 365 Project Standard" Tag="ProjectStdRetail"/>
+            <ComboBoxItem Content="Office 365 Project Professional" Tag="ProjectProRetail"/>
+            <ComboBoxItem Content="Office 365 Visio Standard" Tag="VisioStdRetail"/>
+            <ComboBoxItem Content="Office 365 Visio Professional" Tag="VisioProRetail"/>
             <ComboBoxItem Content="---------------------"/>
             <!-- Edicion 2024 -->
             <ComboBoxItem Content="Office Pro Plus 2024" Tag="ProPlus2024Retail"/>
