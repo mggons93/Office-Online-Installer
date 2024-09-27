@@ -47,8 +47,8 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <TextBlock Text="Seleccionar Office 365:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
         <ComboBox x:Name="variantComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,30,0,0">
             <!-- Office 365 -->
-            <ComboBoxItem Content="Office 365 Pro Plus" Tag="O365ProPlusRetail"/>
-            <ComboBoxItem Content="Office 365 Pro Plus (No Teams)" Tag="O365ProPlusEEANoTeamsRetail"/>
+            <ComboBoxItem Content="Office 365 Professional Plus" Tag="O365ProPlusRetail"/>
+            <ComboBoxItem Content="Office 365 Professional Plus (No Teams)" Tag="O365ProPlusEEANoTeamsRetail"/>
             <ComboBoxItem Content="Office 365 Business" Tag="O365BusinessRetail"/>
             <ComboBoxItem Content="Office 365 Business (No Teams)" Tag="O365BusinessEEANoTeamsRetail"/>
             <ComboBoxItem Content="Office 365 Education Cloud" Tag="O365EduCloudRetail"/>
@@ -60,7 +60,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Office 365 Visio Professional" Tag="VisioProRetail"/>
             <ComboBoxItem Content="---------------------"/>
             <!-- Edicion 2024 -->
-            <ComboBoxItem Content="Office Pro Plus 2024" Tag="ProPlus2024Retail"/>
+            <ComboBoxItem Content="Office Professional Plus 2024" Tag="ProPlus2024Retail"/>
             <ComboBoxItem Content="Home &amp; Business 2024" Tag="HomeBusiness2024Retail"/>
             <ComboBoxItem Content="Office Home 2024" Tag="Home2024Retail"/>
             <ComboBoxItem Content="Project Standard 2024" Tag="ProjectStd2024Retail"/>
@@ -69,7 +69,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Visio Professional 2024" Tag="VisioPro2024Retail"/>
             <ComboBoxItem Content="---------------------"/>
             <!-- Edición 2021 -->
-            <ComboBoxItem Content="Office Pro Plus 2021" Tag="ProPlus2021Retail"/>
+            <ComboBoxItem Content="Office Professional Plus 2021" Tag="ProPlus2021Retail"/>
             <ComboBoxItem Content="Office Home &amp; Business 2021" Tag="HomeBusiness2021Retail"/>
             <ComboBoxItem Content="Office Home &amp; Student 2021" Tag="HomeStudent2021Retail"/>
             <ComboBoxItem Content="Office Standart 2021" Tag="Standard2021Retail"/>
@@ -79,7 +79,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Visio Professional 2021" Tag="VisioPro2021Retail"/>
             <ComboBoxItem Content="---------------------"/>
             <!-- Edición 2019 -->
-            <ComboBoxItem Content="Office Pro Plus 2019" Tag="ProPlus2019Retail"/>
+            <ComboBoxItem Content="Office Professional Plus 2019" Tag="ProPlus2019Retail"/>
             <ComboBoxItem Content="Office Home &amp; Business 2019" Tag="HomeBusiness2019Retail"/>
             <ComboBoxItem Content="Office Home &amp; Student 2019" Tag="HomeStudent2019Retail"/>
             <ComboBoxItem Content="Office Standart 2019" Tag="Standard2019Retail"/>
@@ -89,7 +89,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Visio Professional 2019" Tag="VisioPro2019Retail"/>
             <ComboBoxItem Content="---------------------"/>
             <!-- Edición 2016 -->
-            <ComboBoxItem Content="Office Pro Plus 2016" Tag="ProPlusRetail"/>
+            <ComboBoxItem Content="Office Professional Plus 2016" Tag="ProPlusRetail"/>
             <ComboBoxItem Content="Office Home &amp; Business 2016" Tag="HomeBusinessRetail"/>
             <ComboBoxItem Content="Office Home &amp; Student 2016" Tag="HomeStudentRetail"/>
             <ComboBoxItem Content="Office Standart 2016" Tag="StandardRetail"/>
