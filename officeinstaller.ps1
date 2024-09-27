@@ -46,24 +46,51 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <!-- Fila 1 -->
         <TextBlock Text="Seleccionar Office 365:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
         <ComboBox x:Name="variantComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,30,0,0">
-            <ComboBoxItem Content="O365ProPlusRetail"/>
-            <ComboBoxItem Content="O365ProPlusEEANoTeamsRetail"/>
-            <ComboBoxItem Content="O365BusinessRetail"/>
-            <ComboBoxItem Content="O365BusinessEEANoTeamsRetail"/>
-            <ComboBoxItem Content="O365EduCloudRetail"/>
-            <ComboBoxItem Content="O365HomePremRetail"/>
-            <ComboBoxItem Content="O365SmallBusPremRetail"/>
-            <ComboBoxItem Content="ProjectStdRetail"/>
-	    <ComboBoxItem Content="ProjectProRetail"/>
-            <ComboBoxItem Content="VisioStdRetail"/>
-            <ComboBoxItem Content="VisioProRetail"/>
-	    <ComboBoxItem Content="ProPlus2024Retail"/>
-     	    <ComboBoxItem Content="HomeBusiness2024Retail"/>
-     	    <ComboBoxItem Content="Home2024Retail"/>
-	    <ComboBoxItem Content="ProjectStd2024Retail"/>
-     	    <ComboBoxItem Content="ProjectPro2024Retail"/>
-	    <ComboBoxItem Content="VisioStd2024Retail"/>
-            <ComboBoxItem Content="VisioPro2024Retail"/>            
+            <!-- Office 365 -->
+	    <ComboBoxItem Content="Office 365 Pro Plus" Tag="O365ProPlusRetail"/>
+	    <ComboBoxItem Content="Office 365 Pro Plus (EEA No Teams)" Tag="O365ProPlusEEANoTeamsRetail"/>
+	    <ComboBoxItem Content="Office 365 Business" Tag="O365BusinessRetail"/>
+	    <ComboBoxItem Content="Office 365 Business (EEA No Teams)" Tag="O365BusinessEEANoTeamsRetail"/>
+	    <ComboBoxItem Content="Office 365 Education Cloud" Tag="O365EduCloudRetail"/>
+	    <ComboBoxItem Content="Office 365 Home Premium" Tag="O365HomePremRetail"/>
+	    <ComboBoxItem Content="Office 365 Small Business Premium" Tag="O365SmallBusPremRetail"/>
+	    <ComboBoxItem Content="Project Standard" Tag="ProjectStdRetail"/>
+	    <ComboBoxItem Content="Project Professional" Tag="ProjectProRetail"/>
+	    <ComboBoxItem Content="Visio Standard" Tag="VisioStdRetail"/>
+	    <ComboBoxItem Content="Visio Professional" Tag="VisioProRetail"/>
+	
+	    <!-- Edición 2024 -->
+	    <ComboBoxItem Content="Office Pro Plus 2024" Tag="ProPlus2024Retail"/>
+	    <ComboBoxItem Content="Home & Business 2024" Tag="HomeBusiness2024Retail"/>
+	    <ComboBoxItem Content="Office Home 2024" Tag="Home2024Retail"/>
+	    <ComboBoxItem Content="Project Standard 2024" Tag="ProjectStd2024Retail"/>
+	    <ComboBoxItem Content="Project Professional 2024" Tag="ProjectPro2024Retail"/>
+	    <ComboBoxItem Content="Visio Standard 2024" Tag="VisioStd2024Retail"/>
+	    <ComboBoxItem Content="Visio Professional 2024" Tag="VisioPro2024Retail"/>
+	
+	    <!-- Edición 2021 -->
+	    <ComboBoxItem Content="Office Professional Plus 2021" Tag="O365ProPlus2021"/>
+	    <ComboBoxItem Content="Office Standard 2021" Tag="O365Std2021"/>
+	    <ComboBoxItem Content="Project Standard 2021" Tag="ProjectStd2021"/>
+	    <ComboBoxItem Content="Project Professional 2021" Tag="ProjectPro2021"/>
+	    <ComboBoxItem Content="Visio Standard 2021" Tag="VisioStd2021"/>
+	    <ComboBoxItem Content="Visio Professional 2021" Tag="VisioPro2021"/>
+	
+	    <!-- Edición 2019 -->
+	    <ComboBoxItem Content="Office Professional Plus 2019" Tag="O365ProPlus2019"/>
+	    <ComboBoxItem Content="Office Standard 2019" Tag="O365Std2019"/>
+	    <ComboBoxItem Content="Project Standard 2019" Tag="ProjectStd2019"/>
+	    <ComboBoxItem Content="Project Professional 2019" Tag="ProjectPro2019"/>
+	    <ComboBoxItem Content="Visio Standard 2019" Tag="VisioStd2019"/>
+	    <ComboBoxItem Content="Visio Professional 2019" Tag="VisioPro2019"/>
+	
+	    <!-- Edición 2016 -->
+	    <ComboBoxItem Content="Office Professional Plus 2016" Tag="O365ProPlus2016"/>
+	    <ComboBoxItem Content="Office Standard 2016" Tag="O365Std2016"/>
+	    <ComboBoxItem Content="Project Standard 2016" Tag="ProjectStd2016"/>
+	    <ComboBoxItem Content="Project Professional 2016" Tag="ProjectPro2016"/>
+	    <ComboBoxItem Content="Visio Standard 2016" Tag="VisioStd2016"/>
+	    <ComboBoxItem Content="Visio Professional 2016" Tag="VisioPro2016"/>
         </ComboBox>
         <CheckBox x:Name="architectureCheckBox" Content="Sistema operativo x64" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,30,0,0" IsEnabled="True"/>
 
@@ -202,7 +229,7 @@ $autoActivationCheckBox.Add_Unchecked({
 })
 
 $installButton.Add_Click({
-    $selectedVariant = $variantComboBox.SelectedItem.Content
+    $selectedVariant = $variantComboBox.SelectedItem.Tag
     $selectedLanguageFull = $languageComboBox.SelectedItem.Content
     $selectedLanguage = $selectedLanguageFull -replace '.*\[(.*?)\]', '$1'
     $architecture = if ($architectureCheckBox.IsChecked) { "x64" } else { "x86" }
