@@ -41,7 +41,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Microsoft Office Online By Mggons" Height="420" Width="450">
+        Title="Microsoft Office Online By Mggons Ver 2.2" Height="420" Width="450">
     <Grid>
         <!-- Fila 1 -->
         <TextBlock Text="Seleccionar Office 365:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
