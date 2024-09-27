@@ -48,9 +48,9 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <ComboBox x:Name="variantComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,30,0,0">
             <!-- Office 365 -->
             <ComboBoxItem Content="Office 365 Pro Plus" Tag="O365ProPlusRetail"/>
-            <ComboBoxItem Content="Office 365 Pro Plus (EEA No Teams)" Tag="O365ProPlusEEANoTeamsRetail"/>
+            <ComboBoxItem Content="Office 365 Pro Plus (No Teams)" Tag="O365ProPlusEEANoTeamsRetail"/>
             <ComboBoxItem Content="Office 365 Business" Tag="O365BusinessRetail"/>
-            <ComboBoxItem Content="Office 365 Business (EEA No Teams)" Tag="O365BusinessEEANoTeamsRetail"/>
+            <ComboBoxItem Content="Office 365 Business (No Teams)" Tag="O365BusinessEEANoTeamsRetail"/>
             <ComboBoxItem Content="Office 365 Education Cloud" Tag="O365EduCloudRetail"/>
             <ComboBoxItem Content="Office 365 Home Premium" Tag="O365HomePremRetail"/>
             <ComboBoxItem Content="Office 365 Small Business Premium" Tag="O365SmallBusPremRetail"/>
@@ -58,17 +58,45 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <ComboBoxItem Content="Project Professional" Tag="ProjectProRetail"/>
             <ComboBoxItem Content="Visio Standard" Tag="VisioStdRetail"/>
             <ComboBoxItem Content="Visio Professional" Tag="VisioProRetail"/>
-            
-            <!-- Edición 2024 -->
+            <ComboBoxItem Content="---------------------"/>
+            <!-- Edicion 2024 -->
             <ComboBoxItem Content="Office Pro Plus 2024" Tag="ProPlus2024Retail"/>
-            <ComboBoxItem Content="Office Home & Business 2024" Tag="HomeBusiness2024Retail"/>
-            <ComboBoxItem Content="Office Home 2024" Tag="HomeBusiness2024Retail"/>
+            <ComboBoxItem Content="Home &amp; Business 2024" Tag="HomeBusiness2024Retail"/>
+            <ComboBoxItem Content="Office Home 2024" Tag="Home2024Retail"/>
             <ComboBoxItem Content="Project Standard 2024" Tag="ProjectStd2024Retail"/>
             <ComboBoxItem Content="Project Professional 2024" Tag="ProjectPro2024Retail"/>
             <ComboBoxItem Content="Visio Standard 2024" Tag="VisioStd2024Retail"/>
             <ComboBoxItem Content="Visio Professional 2024" Tag="VisioPro2024Retail"/>
-            
-            
+            <ComboBoxItem Content="---------------------"/>
+            <!-- Edición 2021 -->
+            <ComboBoxItem Content="Office Pro Plus 2021" Tag="ProPlus2021Retail"/>
+            <ComboBoxItem Content="Office Home &amp; Business 2021" Tag="HomeBusiness2021Retail"/>
+            <ComboBoxItem Content="Office Home &amp; Student 2021" Tag="HomeStudent2021Retail"/>
+            <ComboBoxItem Content="Office Standart 2021" Tag="Standard2021Retail"/>
+            <ComboBoxItem Content="Project Standard 2021" Tag="ProjectStd2021Retail"/>
+            <ComboBoxItem Content="Project Professional 2021" Tag="ProjectPro2021Retail"/>
+            <ComboBoxItem Content="Visio Standard 2021" Tag="VisioStd2021Retail"/>
+            <ComboBoxItem Content="Visio Professional 2021" Tag="VisioPro2021Retail"/>
+            <ComboBoxItem Content="---------------------"/>
+            <!-- Edición 2019 -->
+            <ComboBoxItem Content="Office Pro Plus 2019" Tag="ProPlus2019Retail"/>
+            <ComboBoxItem Content="Office Home &amp; Business 2019" Tag="HomeBusiness2019Retail"/>
+            <ComboBoxItem Content="Office Home &amp; Student 2019" Tag="HomeStudent2019Retail"/>
+            <ComboBoxItem Content="Office Standart 2019" Tag="Standard2019Retail"/>
+            <ComboBoxItem Content="Project Standard 2019" Tag="ProjectStd2019Retail"/>
+            <ComboBoxItem Content="Project Professional 2019" Tag="ProjectPro2019Retail"/>
+            <ComboBoxItem Content="Visio Standard 2019" Tag="VisioStd2019Retail"/>
+            <ComboBoxItem Content="Visio Professional 2019" Tag="VisioPro2019Retail"/>
+            <ComboBoxItem Content="---------------------"/>
+            <!-- Edición 2016 -->
+            <ComboBoxItem Content="Office Pro Plus 2016" Tag="ProPlusRetail"/>
+            <ComboBoxItem Content="Office Home &amp; Business 2016" Tag="HomeBusinessRetail"/>
+            <ComboBoxItem Content="Office Home &amp; Student 2016" Tag="HomeStudentRetail"/>
+            <ComboBoxItem Content="Office Standart 2016" Tag="StandardRetail"/>
+            <ComboBoxItem Content="Project Standard 2016" Tag="ProjectStdRetail"/>
+            <ComboBoxItem Content="Project Professional 2016" Tag="ProjectProRetail"/>
+            <ComboBoxItem Content="Visio Standard 2016" Tag="VisioStdRetail"/>
+            <ComboBoxItem Content="Visio Professional 2016" Tag="VisioProRetail"/>            
         </ComboBox>
         <CheckBox x:Name="architectureCheckBox" Content="Sistema operativo x64" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,30,0,0" IsEnabled="True"/>
 
