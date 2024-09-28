@@ -151,34 +151,34 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <!-- Opciones de Activación VL solo si se activa VL -->
         <StackPanel x:Name="vlOptionsPanel" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,130,0,0" Orientation="Horizontal">
             <StackPanel Orientation="Vertical" Margin="0,0,10,0">
-                <TextBlock Text="Seleccione la edicion:" HorizontalAlignment="Left" Margin="0,0,0,5"/>
+                <TextBlock Text="Seleccione la edicion por Volumen:" HorizontalAlignment="Left" Margin="0,0,0,5"/>
                 <ComboBox x:Name="editionComboBox" HorizontalAlignment="Left" Width="200">
-                    <ComboBoxItem Content="Office 2016 STD VL"/>
-                    <ComboBoxItem Content="Office 2016 PRO VL"/>
+                    <ComboBoxItem Content="Office 2016 Standard VL"/>
+                    <ComboBoxItem Content="Office 2016 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
-                    <ComboBoxItem Content="Office 2019 STD VL"/>
-                    <ComboBoxItem Content="Office 2019 PRO VL"/>
+                    <ComboBoxItem Content="Office 2019 Standard VL"/>
+                    <ComboBoxItem Content="Office 2019 Professional VL"/>
 		    <ComboBoxItem Content="------------------"/>
-                    <ComboBoxItem Content="Office 2021 STD VL"/>
-                    <ComboBoxItem Content="Office 2021 PRO VL"/>
+                    <ComboBoxItem Content="Office 2021 Standard VL"/>
+                    <ComboBoxItem Content="Office 2021 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
-                    <ComboBoxItem Content="Project 2016 STD VL"/>
-                    <ComboBoxItem Content="Project 2016 PRO VL"/>
+                    <ComboBoxItem Content="Project 2016 Standard VL"/>
+                    <ComboBoxItem Content="Project 2016 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
-                    <ComboBoxItem Content="Project 2019 STD VL"/>
-                    <ComboBoxItem Content="Project 2019 PRO VL"/>
+                    <ComboBoxItem Content="Project 2019 Standard VL"/>
+                    <ComboBoxItem Content="Project 2019 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
-                    <ComboBoxItem Content="Project 2021 STD VL"/>
-                    <ComboBoxItem Content="Project 2021 PRO VL"/>
+                    <ComboBoxItem Content="Project 2021 Standard VL"/>
+                    <ComboBoxItem Content="Project 2021 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
-                    <ComboBoxItem Content="Visio 2016 STD VL"/>
-                    <ComboBoxItem Content="Visio 2016 PRO VL"/>
+                    <ComboBoxItem Content="Visio 2016 Standard VL"/>
+                    <ComboBoxItem Content="Visio 2016 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
-                    <ComboBoxItem Content="Visio 2019 STD VL"/>
-                    <ComboBoxItem Content="Visio 2019 PRO VL"/>
+                    <ComboBoxItem Content="Visio 2019 Standard VL"/>
+                    <ComboBoxItem Content="Visio 2019 Professional VL"/>
 		   <ComboBoxItem Content="---------------------"/>
-                    <ComboBoxItem Content="Visio 2021 STD VL"/>
-                    <ComboBoxItem Content="Visio 2021 PRO VL"/>
+                    <ComboBoxItem Content="Visio 2021 Standard VL"/>
+                    <ComboBoxItem Content="Visio 2021 Professional VL"/>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical">
@@ -295,24 +295,24 @@ $installButton.Add_Click({
         Add-LogMessage "Convirtiendo Office Retail a Vol. Espere..."
         
         $edition = switch ($editionVL) {
-            "Office 2016 STD VL" { "StandardVL" }
-            "Office 2016 PRO VL" { "ProPlusVL" }
-            "Office 2019 STD VL" { "Standard2019VL" }
-            "Office 2019 PRO VL" { "ProPlus2019VL" }
-            "Office 2021 STD VL" { "Standard2021VL" }
-            "Office 2021 PRO VL" { "ProPlus2021VL" }
-            "Project 2016 STD VL" { "ProjectStdVL" }
-            "Project 2016 PRO VL" { "ProjectProVL" }
-            "Project 2019 STD VL" { "ProjectStd2019VL" }
-            "Project 2019 PRO VL" { "ProjectPro2019VL" }
-            "Project 2021 STD VL" { "ProjectStd2021VL" }
-            "Project 2021 PRO VL" { "ProjectPro2021VL" }
-            "Visio 2016 STD VL" { "VisioStdVL" }
-            "Visio 2016 PRO VL" { "VisioProVL" }
-            "Visio 2019 STD VL" { "VisioStd2019VL" }
-            "Visio 2019 PRO VL" { "VisioPro2019VL" }
-            "Visio 2021 STD VL" { "VisioStd2021VL" }
-            "Visio 2021 PRO VL" { "VisioPro2021VL" }
+            "Office 2016 Standard VL" { "StandardVL" }
+            "Office 2016 Professional VL" { "ProPlusVL" }
+            "Office 2019 Standard VL" { "Standard2019VL" }
+            "Office 2019 Professional VL" { "ProPlus2019VL" }
+            "Office 2021 Standard VL" { "Standard2021VL" }
+            "Office 2021 Professional VL" { "ProPlus2021VL" }
+            "Project 2016 Standard VL" { "ProjectStdVL" }
+            "Project 2016 Professional VL" { "ProjectProVL" }
+            "Project 2019 Standard VL" { "ProjectStd2019VL" }
+            "Project 2019 Professional VL" { "ProjectPro2019VL" }
+            "Project 2021 Standard VL" { "ProjectStd2021VL" }
+            "Project 2021 Professional VL" { "ProjectPro2021VL" }
+            "Visio 2016 Standard VL" { "VisioStdVL" }
+            "Visio 2016 Professional VL" { "VisioProVL" }
+            "Visio 2019 Standard VL" { "VisioStd2019VL" }
+            "Visio 2019 Professional VL" { "VisioPro2019VL" }
+            "Visio 2021 Standard VL" { "VisioStd2021VL" }
+            "Visio 2021 Professional VL" { "VisioPro2021VL" }
         }
 
         Add-LogMessage "Edición seleccionada: $editionVL ($edition)"
