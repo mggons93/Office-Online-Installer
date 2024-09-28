@@ -185,7 +185,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <!-- Botón de instalación y log -->
         <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="10,200,0,0"/>
         <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,205,0,0"/>
-	<TextBlock Text="By Mggons Ver 2.2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="250,225,0,0"/>
+	<TextBlock Text="By Mggons Ver 2.2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,205,0,0"/>
         <TextBlock Text="Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,240,0,0"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="410" Height="100" Margin="10,260,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
     </Grid>
