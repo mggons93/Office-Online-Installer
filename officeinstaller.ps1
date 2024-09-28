@@ -153,9 +153,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
             <StackPanel Orientation="Vertical" Margin="0,0,10,0">
                 <TextBlock Text="Seleccione la edicion por Volumen:" HorizontalAlignment="Left" Margin="0,0,0,5"/>
                 <ComboBox x:Name="editionComboBox" HorizontalAlignment="Left" Width="200">
-		    <ComboBoxItem Content="------------------"/>
 		    <ComboBoxItem Content="---Office 2016----"/>
-		    <ComboBoxItem Content="------------------"/>
                     <ComboBoxItem Content="Office 2016 Standard VL"/>
                     <ComboBoxItem Content="Office 2016 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
@@ -164,9 +162,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
 		    <ComboBoxItem Content="---------------------"/>
                     <ComboBoxItem Content="Visio 2016 Standard VL"/>
                     <ComboBoxItem Content="Visio 2016 Professional VL"/>
-		    <ComboBoxItem Content="------------------"/>
 		    <ComboBoxItem Content="---Office 2019----"/>
-		    <ComboBoxItem Content="------------------"/>
                     <ComboBoxItem Content="Office 2019 Standard VL"/>
                     <ComboBoxItem Content="Office 2019 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
@@ -175,9 +171,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
 		    <ComboBoxItem Content="---------------------"/>
                     <ComboBoxItem Content="Visio 2019 Standard VL"/>
                     <ComboBoxItem Content="Visio 2019 Professional VL"/>
-		    <ComboBoxItem Content="------------------"/>
 		    <ComboBoxItem Content="---Office 2021----"/>
-		    <ComboBoxItem Content="------------------"/>
                     <ComboBoxItem Content="Office 2021 Standard VL"/>
                     <ComboBoxItem Content="Office 2021 Professional VL"/>
 		    <ComboBoxItem Content="---------------------"/>
