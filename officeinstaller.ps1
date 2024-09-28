@@ -351,4 +351,3 @@ $installButton.Add_Click({
 
 $window.ShowDialog() | Out-Null
 [Win32]::ShowWindow($consolePtr, 9) # 9 = Restaurar la ventana
-9
