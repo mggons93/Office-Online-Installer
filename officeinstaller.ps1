@@ -185,7 +185,8 @@ $consolePtr = [Win32]::GetConsoleWindow()
         <!-- Botón de instalación y log -->
         <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="10,200,0,0"/>
         <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,205,0,0"/>
-	<TextBlock Text="By Mggons Ver 2.2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,205,0,0"/>
+ 	<Button x:Name="donateButton" Content="Donate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="285,205,0,0" Click="OpenDonateUrl"/>
+	<!-- <TextBlock Text="By Mggons Ver 2.2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,205,0,0"/> -->
         <TextBlock Text="Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,240,0,0"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="410" Height="100" Margin="10,260,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
     </Grid>
@@ -346,6 +347,9 @@ $installButton.Add_Click({
         }
     }
 })
-
+function OpenDonateUrl {
+    Start-Process "https://cutt.ly/DonacionSyA"
+}
 $window.ShowDialog() | Out-Null
 [Win32]::ShowWindow($consolePtr, 9) # 9 = Restaurar la ventana
+9
