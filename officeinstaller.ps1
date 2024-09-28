@@ -207,6 +207,10 @@ $logTextBox = $window.FindName("logTextBox")
 $vlOptionsPanel = $window.FindName("vlOptionsPanel")
 $autoActivationCheckBox = $window.FindName("autoActivationCheckBox")
 
+function OpenDonateUrl {
+    Start-Process "https://cutt.ly/DonacionSyA"
+}
+
 function Add-LogMessage {
     param (
         [string]$message
@@ -347,9 +351,7 @@ $installButton.Add_Click({
         }
     }
 })
-function OpenDonateUrl {
-    Start-Process "https://cutt.ly/DonacionSyA"
-}
+
 $window.ShowDialog() | Out-Null
 [Win32]::ShowWindow($consolePtr, 9) # 9 = Restaurar la ventana
 9
