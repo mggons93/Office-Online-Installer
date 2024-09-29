@@ -8,29 +8,32 @@ function IsMicrosoft365Installed {
 
 if (IsMicrosoft365Installed) {
     Write-Output "Microsoft 365 se encuentra instalado."
+    start-sleep 5
+    exit
 } else {
     Write-Output "Microsoft 365 no se encuentra instalado, procediendo con la instalación."
-
     try {
         Write-Host "Descargando e ejecutando el script de instalación de Office 365..."
-        
         # Ruta del archivo temporal
         $scriptPath = "$env:TEMP\officeinstaller.ps1"
-
         # Descargar el script
         Invoke-WebRequest -Uri https://cutt.ly/0ecZESJt -OutFile $scriptPath
-
         # Verificar si el archivo se ha descargado correctamente
         if (Test-Path $scriptPath) {
             # Ejecutar el script
             Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"" -Wait -NoNewWindow
             Write-Host "El script de instalación se ha ejecutado."
+            start-slepp 5
+            exit
         } else {
             Write-Host "El archivo de script no se descargó correctamente."
+            start-sleep 5
+            exit
         }
     } catch {
         Write-Host "Error al descargar o ejecutar el script."
         Write-Host $_.Exception.Message
+        start-sleep 5
+        exit
     }
 }
-exit
