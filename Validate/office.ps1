@@ -33,3 +33,4 @@ if (IsMicrosoft365Installed) {
         Write-Host $_.Exception.Message
     }
 }
+exit
