@@ -23,7 +23,7 @@ if (IsMicrosoft365Installed) {
             # Ejecutar el script
             Start-Process powershell.exe -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"" -Wait -NoNewWindow
             Write-Host "El script de instalación se ha ejecutado."
-            start-slepp 5
+            start-sleep 5
             exit
         } else {
             Write-Host "El archivo de script no se descargó correctamente."
