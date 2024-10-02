@@ -174,6 +174,13 @@ $consolePtr = [Win32]::GetConsoleWindow()
                     <ComboBoxItem Content="Project 2021 Professional VL"/>		    
                     <ComboBoxItem Content="Visio 2021 Standard VL"/>
                     <ComboBoxItem Content="Visio 2021 Professional VL"/>
+		    <ComboBoxItem Content="****Office 2024****"/>
+                    <ComboBoxItem Content="Office 2024 Standard VL"/>
+                    <ComboBoxItem Content="Office 2024 Professional VL"/>
+                    <ComboBoxItem Content="Project 2024 Standard VL"/>
+                    <ComboBoxItem Content="Project 2024 Professional VL"/>		    
+                    <ComboBoxItem Content="Visio 2024 Standard VL"/>
+                    <ComboBoxItem Content="Visio 2024 Professional VL"/>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical">
@@ -316,6 +323,13 @@ $installButton.Add_Click({
             "Project 2021 Professional VL" { "ProjectPro2021VL" }
             "Visio 2021 Standard VL" { "VisioStd2021VL" }
             "Visio 2021 Professional VL" { "VisioPro2021VL" }
+
+     	    "Office 2024 Standard VL" { "Standard2024VL" }
+            "Office 2024 Professional VL" { "ProPlus2024VL" }
+            "Project 2024 Standard VL" { "ProjectStd2024VL" }
+            "Project 2024 Professional VL" { "ProjectPro2024VL" }
+            "Visio 2024 Standard VL" { "VisioStd2024VL" }
+            "Visio 2024 Professional VL" { "VisioPro2024VL" }
         }
 
         Add-LogMessage "Edición seleccionada: $editionVL ($edition)"
