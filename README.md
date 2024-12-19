@@ -7,12 +7,27 @@
 ```bash
 irm https://cutt.ly/OfficeOnlineInstall | iex
 ```
+## En caso de el siguiente error
+irm : Anulada la solicitud: No se puede crear un canal seguro SSL/TLS.
+
+```bash
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+irm https://cutt.ly/OfficeOnlineInstall | iex
+```
 
 ## To use the script you can use the following entry with Powershell
 
 ```bash
 irm https://cutt.ly/OfficeOnlineInstall | iex
 ```
+
+## In case of the following error
+irm : Request aborted: Unable to create secure SSL/TLS channel.
+```bash
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+irm https://cutt.ly/OfficeOnlineInstall | iex
+```
+
 ```
 ## Upcoming updates
 ## Proximas actualizaciones
