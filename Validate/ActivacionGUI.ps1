@@ -9,9 +9,7 @@ Add-Type -AssemblyName System.Drawing
 
 $urlIcono = "https://raw.githubusercontent.com/mggons93/Mggons/refs/heads/main/Validate/R.ico"
 $rutaTemporalIcono = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "mi_icono.ico")
-
 Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
-
 
 function Verificar-Activacion {
     $salida = (slmgr -dli 2>&1 | Out-String)
