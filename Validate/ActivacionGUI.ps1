@@ -51,7 +51,7 @@ if (Verificar-Activacion) {
         Title="Activación de Windows by Mggons" Height="250" Width="400" Background="#778899">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <StackPanel Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Activación de Windows Ver: 1.1" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+            <TextBlock Text="Activación de Windows Ver: 1.2" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" HorizontalAlignment="Center"/>
             <TextBlock Text="Seleccione el método de activación:" FontWeight="Bold" Margin="0,0,0,10" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <RadioButton x:Name="SerialRadioButton" Content="Activación por Serial" Margin="0,0,20,0"/>
