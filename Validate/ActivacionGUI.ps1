@@ -95,7 +95,6 @@ $activarButton.Add_Click({
         $outputPath1 = $outputPath1 -replace "%blank%", ""
         Invoke-WebRequest -Uri $url -OutFile $outputPath1
         Start-Process -FilePath "cmd.exe" -ArgumentList "/c $outputPath1 /HWID" -WindowStyle Hidden -Wait
-        Remove-Item -Path $outputFile -Force
         Remove-Item -Path $outputPath1 -Force
         Start-Sleep -Seconds 5
         if (Verificar-Activacion) {
