@@ -110,6 +110,8 @@ $activarButton.Add_Click({
         if ($serial -match $regex) {
             $command = "slmgr -ipk $serial"
             Start-Process -FilePath "cmd.exe" -ArgumentList "/c $command" -WindowStyle Hidden -Wait | Out-Null
+            $command1 = "slmgr -ato"
+            Start-Process -FilePath "cmd.exe" -ArgumentList "/c $command1" -WindowStyle Hidden -Wait | Out-Null
             # Verificar la activación
             Start-Sleep -Seconds 5
             if (Verificar-Activacion) {
