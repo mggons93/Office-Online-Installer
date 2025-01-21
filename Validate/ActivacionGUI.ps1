@@ -149,7 +149,7 @@ $outputPath2 = "$env:TEMP\Change_Windows_Edi%blank%tion.cmd"
 Invoke-WebRequest -Uri $url -OutFile $outputPath2
 Start-Process -FilePath "cmd.exe" -ArgumentList "/c $outputPath2" -Wait
 Remove-Item -Path $outputPath2 -Force
-    [System.Windows.MessageBox]::Show("La edición de Windows ha sido cambiada.")
+    #[System.Windows.MessageBox]::Show("La edición de Windows ha sido cambiada.")
 })
 
 # Mostrar la ventana y eliminar el icono al cerrar
