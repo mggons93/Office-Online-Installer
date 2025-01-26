@@ -41,7 +41,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Microsoft Office Online By Mggons Ver 2.2" Height="420" Width="450" Background="#778899">
+        Title="Microsoft Office Online By Mggons Ver 2.6" Height="420" Width="450" Background="#778899">
     <Grid>
         <!-- Fila 1 -->
         <TextBlock Text="Seleccionar Office 365:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
@@ -190,10 +190,11 @@ $consolePtr = [Win32]::GetConsoleWindow()
         </StackPanel>
 
         <!-- Botón de instalación y log -->
-        <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="10,200,0,0"/>
-        <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,205,0,0"/>
- 	<Button x:Name="Donate" Content="Donate Paypal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="30" Margin="285,200,0,0"/>	
- <!-- <TextBlock Text="By Mggons Ver 2.2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,205,0,0"/> -->
+        <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="30" Margin="10,200,0,0"/>
+        <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,205,0,0"/>
+ 	    <Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="30" Margin="255,200,0,0"/>
+        <Button x:Name="Donate" Content="Donate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="30" Margin="345,200,0,0"/>
+   <!-- <TextBlock Text="By Mggons Ver 2.6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,205,0,0"/> -->
         <TextBlock Text="Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,240,0,0"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="410" Height="100" Margin="10,260,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
     </Grid>
@@ -211,6 +212,7 @@ $editionComboBox = $window.FindName("editionComboBox")
 $licenseKeyTextBox = $window.FindName("licenseKeyTextBox")
 $installButton = $window.FindName("installButton")
 $donateButton = $window.FindName("Donate")
+$activereadButton = $window.FindName("Activeread")
 $logTextBox = $window.FindName("logTextBox")
 $vlOptionsPanel = $window.FindName("vlOptionsPanel")
 $autoActivationCheckBox = $window.FindName("autoActivationCheckBox")
@@ -243,8 +245,24 @@ $autoActivationCheckBox.Add_Unchecked({
         $autoActivationCheckBox.IsChecked = $false
     }
 })
+
 $donateButton.Add_Click({
 Start-Process "https://cutt.ly/DonacionSyA"
+})
+
+$activereadButton.Add_Click({
+Add-LogMessage "Iniciando Activacion. Espere..."
+$url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
+$url = $url -replace "%blank%", ""
+$outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
+$outputPath1 = $outputPath1 -replace "%blank%", ""
+Add-LogMessage "Activando..."
+Invoke-WebRequest -Uri $url -OutFile $outputPath1
+Start-Process -FilePath $outputPath1 /Ohook -Wait
+Add-LogMessage "Eliminando Archivos Usados..."
+Remove-Item -Path $outputFile -Force
+Remove-Item -Path $outputPath1 -Force
+Add-LogMessage "Activacion completada."
 })
 
 $installButton.Add_Click({
@@ -288,7 +306,7 @@ $installButton.Add_Click({
             
             $url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
             $url = $url -replace "%blank%", ""
-	    $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
+	        $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
      	    $outputPath1 = $outputPath1 -replace "%blank%", ""
             Add-LogMessage "Activando..."
             Invoke-WebRequest -Uri $url -OutFile $outputPath1
@@ -305,16 +323,16 @@ $installButton.Add_Click({
         $edition = switch ($editionVL) {
             "Office 2016 Standard VL" { "StandardVL" }
             "Office 2016 Professional VL" { "ProPlusVL" }
-	    "Project 2016 Standard VL" { "ProjectStdVL" }
+	        "Project 2016 Standard VL" { "ProjectStdVL" }
             "Project 2016 Professional VL" { "ProjectProVL" }
-	    "Visio 2016 Standard VL" { "VisioStdVL" }
+	        "Visio 2016 Standard VL" { "VisioStdVL" }
             "Visio 2016 Professional VL" { "VisioProVL" }
 	    
             "Office 2019 Standard VL" { "Standard2019VL" }
             "Office 2019 Professional VL" { "ProPlus2019VL" }
-	    "Project 2019 Standard VL" { "ProjectStd2019VL" }
+	        "Project 2019 Standard VL" { "ProjectStd2019VL" }
             "Project 2019 Professional VL" { "ProjectPro2019VL" }
-	    "Visio 2019 Standard VL" { "VisioStd2019VL" }
+	        "Visio 2019 Standard VL" { "VisioStd2019VL" }
             "Visio 2019 Professional VL" { "VisioPro2019VL" }
 	    
             "Office 2021 Standard VL" { "Standard2021VL" }
