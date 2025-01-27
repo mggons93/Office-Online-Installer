@@ -191,9 +191,18 @@ $consolePtr = [Win32]::GetConsoleWindow()
 
         <!-- Botón de instalación y log -->
         <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="30" Margin="10,200,0,0"/>
+	<Button.ToolTip>
+                <ToolTip Content="Esta opcion permite instalar office con o sin activacion automatica." />
+        </Button.ToolTip>
         <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,205,0,0"/>
- 	    <Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="30" Margin="255,200,0,0"/>
+ 	<Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="30" Margin="255,200,0,0"/>
+  	<Button.ToolTip>
+                <ToolTip Content="Esta opcion es solo para activar (solo si tienes office instalado previamente." />
+        </Button.ToolTip>
         <Button x:Name="Donate" Content="Donate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="30" Margin="345,200,0,0"/>
+	<Button.ToolTip>
+                <ToolTip Content="Aqui nos puede donar y apotar en el proyecto." />
+        </Button.ToolTip>
    <!-- <TextBlock Text="By Mggons Ver 2.6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,205,0,0"/> -->
         <TextBlock Text="Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,240,0,0"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="410" Height="100" Margin="10,260,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
