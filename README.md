@@ -27,7 +27,7 @@ irm : Request aborted: Unable to create secure SSL/TLS channel.
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 irm https://cutt.ly/OfficeOnlineInstall | iex
 ```
-
+## Imagen de Muestra
 <p align="center">
 <a href=></a><img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Microsoft_365_logo.png"/>
 </p>
