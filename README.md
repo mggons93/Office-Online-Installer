@@ -28,6 +28,10 @@ irm : Request aborted: Unable to create secure SSL/TLS channel.
 irm https://cutt.ly/OfficeOnlineInstall | iex
 ```
 
+<p align="center">
+<a href=></a><img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Microsoft_365_logo.png"/>
+</p>
+
 ```
 ## Upcoming updates
 ## Proximas actualizaciones
