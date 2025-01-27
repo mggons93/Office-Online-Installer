@@ -29,7 +29,7 @@ irm https://cutt.ly/OfficeOnlineInstall | iex
 ```
 ## Imagen de Muestra
 <p align="center">
-<a href=></a><img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Microsoft_365_logo.png"/>
+<a href=></a><img src="https://i.ibb.co/WB39tKg/Captura-de-pantalla-2025-01-27-154815.png"/>
 </p>
 
 ```
