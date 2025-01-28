@@ -12,7 +12,6 @@ if (-not (Test-Admin)) {
     return  # Se usa 'return' para evitar que el script se detenga
 }
 
-$ErrorActionPreference = "Stop"
 # Enable TLSv1.2 for compatibility with older clients for current session
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
