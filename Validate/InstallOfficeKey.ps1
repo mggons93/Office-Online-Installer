@@ -1,10 +1,22 @@
-﻿$IsAdmin = [Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()
-$IsAdminRole = $IsAdmin.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+# Función para reiniciar el script con privilegios de administrador
+function Start-ProcessAsAdmin {
+    param (
+        [string]$file,
+        [string[]]$arguments = @()
+    )
+    Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
+}
 
-if (-not $IsAdminRole) {
-    Write-Host "Este script debe ejecutarse como Administrador. Cerrando..." -ForegroundColor Red
+# Comprobar si el script se está ejecutando como administrador
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    # Si no está ejecutándose como administrador, relanza el script con privilegios elevados
+    Start-ProcessAsAdmin -file "powershell.exe" -arguments "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
     exit
 }
+
+$ErrorActionPreference = "Stop"
+# Enable TLSv1.2 for compatibility with older clients for current session
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 # Función para registrar mensajes en el log
 function Add-LogMessage {
