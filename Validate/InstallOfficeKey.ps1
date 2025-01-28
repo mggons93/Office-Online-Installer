@@ -1,19 +1,16 @@
-# Función para reiniciar el script con privilegios de administrador
-function Start-ProcessAsAdmin {
-    param (
-        [string]$file,
-        [string[]]$arguments = @()
-    )
-    Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
+# Verificar si el script se está ejecutando como administrador
+function Test-Admin {
+    $currentIdentity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = New-Object Security.Principal.WindowsPrincipal($currentIdentity)
+    return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
-# Comprobar si el script se está ejecutando como administrador
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    # Si no está ejecutándose como administrador, relanza el script con privilegios elevados
-    Start-ProcessAsAdmin -file "powershell.exe" -arguments "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
+if (-not (Test-Admin)) {
+    # Si no es administrador, reiniciar como administrador
+    $scriptPath = $MyInvocation.MyCommand.Path
+    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"" -Verb RunAs
     exit
 }
-
 $ErrorActionPreference = "Stop"
 # Enable TLSv1.2 for compatibility with older clients for current session
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
