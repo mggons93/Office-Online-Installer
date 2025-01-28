@@ -91,14 +91,14 @@ if ($licenseFiles.Count -eq 0) {
         $licenseFilePath = Join-Path -Path $licensesPath -ChildPath $licenseFile.Name
 
         # Ejecutar ospp.vbs para instalar la licencia
-        Start-Process -FilePath "cscript.exe" -ArgumentList "`"ospp.vbs`" /inslic:`"$licenseFilePath`"" -Wait -NoNewWindow
+        Start-Process -FilePath "cscript.exe" -ArgumentList "`"ospp.vbs`" /inslic:`"$licenseFilePath`"" -Wait -NoNewWindow | Out-Null
     }
     Write-Host "Instalación de licencias completada." -ForegroundColor Green
 }
 
 # 4. Activar la clave de producto ingresada
-Start-Process -FilePath "cscript.exe" -ArgumentList "ospp.vbs /inpkey:$productKey" -Wait -NoNewWindow
-Start-Process -FilePath "cscript.exe" -ArgumentList "ospp.vbs /act" -Wait -NoNewWindow
+Start-Process -FilePath "cscript.exe" -ArgumentList "ospp.vbs /inpkey:$productKey" -Wait -NoNewWindow | Out-Null
+Start-Process -FilePath "cscript.exe" -ArgumentList "ospp.vbs /act" -Wait -NoNewWindow | Out-Null
 
 Write-Host "Licencia instalada y activada correctamente." -ForegroundColor Green
 Add-LogMessage "Licencia instalada y activada correctamente."
