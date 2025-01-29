@@ -38,6 +38,13 @@ public class Win32 {
 $consolePtr = [Win32]::GetConsoleWindow()
 [Win32]::ShowWindow($consolePtr, 6)
 
+# Definir la URL del icono
+$urlIcono = "https://raw.githubusercontent.com/mggons93/Mggons/refs/heads/main/Validate/R.ico"
+$rutaTemporalIcono = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "mi_icono.ico")
+
+# Descargar el icono desde la URL y guardarlo en la ubicación temporal
+Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
+
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
