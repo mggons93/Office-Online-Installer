@@ -39,7 +39,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
 [Win32]::ShowWindow($consolePtr, 6)
 
 # Definir la URL del icono
-$urlIcono = "https://raw.githubusercontent.com/mggons93/Mggons/refs/heads/main/Validate/R.ico"
+$urlIcono = "https://raw.githubusercontent.com/mggons93/Mggons/refs/heads/main/OfficeIco.ico"
 $rutaTemporalIcono = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "mi_icono.ico")
 
 # Descargar el icono desde la URL y guardarlo en la ubicación temporal
