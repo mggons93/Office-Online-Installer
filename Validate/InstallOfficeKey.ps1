@@ -1,4 +1,3 @@
-# Verificar si el script se está ejecutando como administrador
 function Test-Admin {
     $currentIdentity = [Security.Principal.WindowsIdentity]::GetCurrent()
     $principal = New-Object Security.Principal.WindowsPrincipal($currentIdentity)
