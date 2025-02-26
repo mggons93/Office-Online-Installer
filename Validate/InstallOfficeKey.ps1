@@ -233,5 +233,5 @@ $principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -LogonType ServiceAccou
 # 7. Registrar la tarea con privilegios elevados
 Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Settings $settings -Principal $principal | Out-Null
 
-Write-Host "Tarea programada '$taskName' creada correctamente para ejecutarse con privilegios elevados en un año." -ForegroundColor Green
+#Write-Host "Tarea programada '$taskName' creada correctamente para ejecutarse con privilegios elevados en un año." -ForegroundColor Green
 Add-LogMessage "Tarea programada '$taskName' creada correctamente con privilegios elevados."
