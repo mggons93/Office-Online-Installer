@@ -334,7 +334,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
             </Button.ToolTip>
         </Button>
 
-        <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,192,0,0" FontWeight="Bold"/>
+        <CheckBox x:Name="autoActivationCheckBox" Content="Activar Automatico" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,192,0,0" FontWeight="Bold"/>
 
         <Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Right" VerticalAlignment="Top" Width="96" Height="30" Margin="0,184,111,0" FontWeight="Bold">
             <Button.ToolTip>
@@ -410,18 +410,21 @@ Start-Process "https://cutt.ly/DonacionSyA"
 })
 
 $activereadButton.Add_Click({
-Add-LogMessage "Iniciando Activacion. Espere..."
-$url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
-$url = $url -replace "%blank%", ""
-$outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
-$outputPath1 = $outputPath1 -replace "%blank%", ""
-Add-LogMessage "Activando..."
-Invoke-WebRequest -Uri $url -OutFile $outputPath1
-Start-Process -FilePath $outputPath1 /Ohook -Wait
-Add-LogMessage "Eliminando Archivos Usados..."
-Remove-Item -Path $outputFile -Force
-Remove-Item -Path $outputPath1 -Force
-Add-LogMessage "Activacion completada."
+            Add-LogMessage "Iniciando Activacion. Espere..."
+            $url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
+            $url = $url -replace "%blank%", ""
+            $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
+            $outputPath1 = $outputPath1 -replace "%blank%", ""
+
+            Add-LogMessage "Activando..."
+            Invoke-WebRequest -Uri $url -OutFile $outputPath1
+
+            # Ejecutar de forma oculta y esperar a que termine
+            Start-Process -FilePath $outputPath1 /Ohook -WindowStyle Hidden -Wait -Verb RunAs
+
+            #Add-LogMessage "Eliminando Archivos Usados..."
+            Remove-Item -Path $outputPath1 -Force
+            Add-LogMessage "Activacion completada."
 })
 
 $installButton.Add_Click({
@@ -462,16 +465,18 @@ $installButton.Add_Click({
 
         if ($autoActivate -and -not $useVL) {
             Add-LogMessage "Iniciando Activacion. Espere..."
-            
             $url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
             $url = $url -replace "%blank%", ""
-	        $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
-     	    $outputPath1 = $outputPath1 -replace "%blank%", ""
+            $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
+            $outputPath1 = $outputPath1 -replace "%blank%", ""
+
             Add-LogMessage "Activando..."
             Invoke-WebRequest -Uri $url -OutFile $outputPath1
-            Start-Process -FilePath $outputPath1 /Ohook -Wait 
-            Add-LogMessage "Eliminando Archivos Usados..."
-	        Remove-Item -Path $outputFile -Force
+
+            # Ejecutar de forma oculta y esperar a que termine
+            Start-Process -FilePath $outputPath1 /Ohook -WindowStyle Hidden -Wait -Verb RunAs
+
+            #Add-LogMessage "Eliminando Archivos Usados..."
             Remove-Item -Path $outputPath1 -Force
             Add-LogMessage "Activacion completada."
         }
