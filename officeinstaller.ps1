@@ -334,7 +334,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
             </Button.ToolTip>
         </Button>
 
-        <CheckBox x:Name="autoActivationCheckBox" Content="Activar Automatico" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,192,0,0" FontWeight="Bold"/>
+        <CheckBox x:Name="autoActivationCheckBox" Content="Activar Automatico" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,192,0,0" FontWeight="Bold" IsEnabled="True"/>
 
         <Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Right" VerticalAlignment="Top" Width="96" Height="30" Margin="0,184,111,0" FontWeight="Bold">
             <Button.ToolTip>
