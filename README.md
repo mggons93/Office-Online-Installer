@@ -35,8 +35,8 @@ irm https://cutt.ly/OfficeOnlineInstall | iex
 ```
 ## Upcoming updates
 ## Proximas actualizaciones
--> Microsoft Office 2024 -> Integrado el 18/09/2024
--> Microsoft Office 2024 VL -> Integrado el 2/10/2024
+
+-> Cambio de interfaz y subida de version 3.0 -> Integrado el 18/04/2025
 ```
 ```
 ## Features
