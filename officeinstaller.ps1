@@ -19,6 +19,18 @@ $ErrorActionPreference = "Stop"
 # Enable TLSv1.2 for compatibility with older clients for current session
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+# URL de la imagen de Office 365
+$imageUrl = "https://granikos.eu/wp-content/uploads/2023/02/Logo-Microsoft365.png"
+
+# Obtener la hora actual formateada para el nombre del archivo
+$timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+
+# Ruta temporal con nombre dinámico
+$tempImagePath = [System.IO.Path]::Combine($env:TEMP, "office365_$timestamp.png")
+
+# Descargar la imagen si no existe o si quieres forzar que se actualice cada vez
+Invoke-WebRequest -Uri $imageUrl -OutFile $tempImagePath -UseBasicParsing
+
 Add-Type -AssemblyName PresentationFramework
 $is64Bit = [Environment]::Is64BitOperatingSystem
 
@@ -48,69 +60,176 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Microsoft Office Online By Mggons Ver 2.6" Height="420" Width="450" Background="#778899">
-    <Grid>
+        Title="Microsoft Office Online By Mggons" Height="379" Width="470" Background="#8e77ab">
+    <Grid Height="347">
         <!-- Fila 1 -->
-        <TextBlock Text="Seleccionar Office 365:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-        <ComboBox x:Name="variantComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,30,0,0">
+        <TextBlock Text="Selecciona tu edicion de Office:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,19,0,0" FontWeight="Bold"/>
+        <ComboBox x:Name="variantComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,42,0,0">
             <!-- Office 365 -->
-            <ComboBoxItem Content="Office 365 Pro Plus" Tag="O365ProPlusRetail"/>
-            <ComboBoxItem Content="Office 365 Pro Plus (No Teams)" Tag="O365ProPlusEEANoTeamsRetail"/>
-            <ComboBoxItem Content="Office 365 Business" Tag="O365BusinessRetail"/>
-            <ComboBoxItem Content="Office 365 Business (No Teams)" Tag="O365BusinessEEANoTeamsRetail"/>
-            <ComboBoxItem Content="Office 365 Education Cloud" Tag="O365EduCloudRetail"/>
-            <ComboBoxItem Content="Office 365 Home Premium" Tag="O365HomePremRetail"/>
-            <ComboBoxItem Content="Office 365 Small Business Premium" Tag="O365SmallBusPremRetail"/>
-            <ComboBoxItem Content="Office 365 Project Standard" Tag="ProjectStdRetail"/>
-            <ComboBoxItem Content="Office 365 Project Professional" Tag="ProjectProRetail"/>
-            <ComboBoxItem Content="Office 365 Visio Standard" Tag="VisioStdRetail"/>
-            <ComboBoxItem Content="Office 365 Visio Professional" Tag="VisioProRetail"/>
-            <ComboBoxItem Content="---------------------"/>
-            <!-- Edicion 2024 -->
-            <ComboBoxItem Content="Office Professional Plus 2024" Tag="ProPlus2024Retail"/>
-            <ComboBoxItem Content="Home &amp; Business 2024" Tag="HomeBusiness2024Retail"/>
-            <ComboBoxItem Content="Office Home 2024" Tag="Home2024Retail"/>
-            <ComboBoxItem Content="Project Standard 2024" Tag="ProjectStd2024Retail"/>
-            <ComboBoxItem Content="Project Professional 2024" Tag="ProjectPro2024Retail"/>
-            <ComboBoxItem Content="Visio Standard 2024" Tag="VisioStd2024Retail"/>
-            <ComboBoxItem Content="Visio Professional 2024" Tag="VisioPro2024Retail"/>
-            <ComboBoxItem Content="---------------------"/>
+            <ComboBoxItem IsEnabled="False">
+                <TextBlock Text="--- Microsoft 365 ---" FontWeight="Bold"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="O365ProPlusRetail">
+                <TextBlock Text="Office 365 Pro Plus"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="O365ProPlusEEANoTeamsRetail">
+                <TextBlock Text="Office 365 Pro Plus (No Teams)"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="O365BusinessRetail">
+                <TextBlock Text="Office 365 Business"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="O365BusinessEEANoTeamsRetail">
+                <TextBlock Text="Office 365 Business (No Teams)"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="O365EduCloudRetail">
+                <TextBlock Text="Office 365 Education Cloud"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="O365HomePremRetail">
+                <TextBlock Text="Office 365 Home Premium"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="O365SmallBusPremRetail">
+                <TextBlock Text="Office 365 Small Business Premium"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectStdRetail">
+                <TextBlock Text="Office 365 Project Standard"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectProRetail">
+                <TextBlock Text="Office 365 Project Professional"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioStdRetail">
+                <TextBlock Text="Office 365 Visio Standard"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioProRetail">
+                <TextBlock Text="Office 365 Visio Professional"/>
+            </ComboBoxItem>
+
+            <!-- Separador -->
+            <ComboBoxItem IsEnabled="False">
+                <TextBlock Text="--- Microsoft Office 2024 ---" FontWeight="Bold"/>
+            </ComboBoxItem>
+
+            <!-- Edición 2024 -->
+            <ComboBoxItem Tag="ProPlus2024Retail">
+                <TextBlock Text="Office Professional Plus 2024"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="HomeBusiness2024Retail">
+                <TextBlock Text="Home &amp; Business 2024"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="Home2024Retail">
+                <TextBlock Text="Office Home 2024"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectStd2024Retail">
+                <TextBlock Text="Project Standard 2024"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectPro2024Retail">
+                <TextBlock Text="Project Professional 2024"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioStd2024Retail">
+                <TextBlock Text="Visio Standard 2024"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioPro2024Retail">
+                <TextBlock Text="Visio Professional 2024"/>
+            </ComboBoxItem>
+
+            <!-- Separador -->
+            <ComboBoxItem IsEnabled="False">
+                <TextBlock Text="--- Microsoft Office 2021 ---" FontWeight="Bold"/>
+            </ComboBoxItem>
+
             <!-- Edición 2021 -->
-            <ComboBoxItem Content="Office Professional Plus 2021" Tag="ProPlus2021Retail"/>
-            <ComboBoxItem Content="Office Home &amp; Business 2021" Tag="HomeBusiness2021Retail"/>
-            <ComboBoxItem Content="Office Home &amp; Student 2021" Tag="HomeStudent2021Retail"/>
-            <ComboBoxItem Content="Office Standart 2021" Tag="Standard2021Retail"/>
-            <ComboBoxItem Content="Project Standard 2021" Tag="ProjectStd2021Retail"/>
-            <ComboBoxItem Content="Project Professional 2021" Tag="ProjectPro2021Retail"/>
-            <ComboBoxItem Content="Visio Standard 2021" Tag="VisioStd2021Retail"/>
-            <ComboBoxItem Content="Visio Professional 2021" Tag="VisioPro2021Retail"/>
-            <ComboBoxItem Content="---------------------"/>
+            <ComboBoxItem Tag="ProPlus2021Retail">
+                <TextBlock Text="Office Professional Plus 2021"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="HomeBusiness2021Retail">
+                <TextBlock Text="Office Home &amp; Business 2021"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="HomeStudent2021Retail">
+                <TextBlock Text="Office Home &amp; Student 2021"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="Standard2021Retail">
+                <TextBlock Text="Office Standard 2021"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectStd2021Retail">
+                <TextBlock Text="Project Standard 2021"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectPro2021Retail">
+                <TextBlock Text="Project Professional 2021"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioStd2021Retail">
+                <TextBlock Text="Visio Standard 2021"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioPro2021Retail">
+                <TextBlock Text="Visio Professional 2021"/>
+            </ComboBoxItem>
+
+            <!-- Separador -->
+            <ComboBoxItem IsEnabled="False">
+                <TextBlock Text="--- Microsoft Office  2019 ---" FontWeight="Bold"/>
+            </ComboBoxItem>
+
             <!-- Edición 2019 -->
-            <ComboBoxItem Content="Office Professional Plus 2019" Tag="ProPlus2019Retail"/>
-            <ComboBoxItem Content="Office Home &amp; Business 2019" Tag="HomeBusiness2019Retail"/>
-            <ComboBoxItem Content="Office Home &amp; Student 2019" Tag="HomeStudent2019Retail"/>
-            <ComboBoxItem Content="Office Standart 2019" Tag="Standard2019Retail"/>
-            <ComboBoxItem Content="Project Standard 2019" Tag="ProjectStd2019Retail"/>
-            <ComboBoxItem Content="Project Professional 2019" Tag="ProjectPro2019Retail"/>
-            <ComboBoxItem Content="Visio Standard 2019" Tag="VisioStd2019Retail"/>
-            <ComboBoxItem Content="Visio Professional 2019" Tag="VisioPro2019Retail"/>
-            <ComboBoxItem Content="---------------------"/>
+            <ComboBoxItem Tag="ProPlus2019Retail">
+                <TextBlock Text="Office Professional Plus 2019"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="HomeBusiness2019Retail">
+                <TextBlock Text="Office Home &amp; Business 2019"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="HomeStudent2019Retail">
+                <TextBlock Text="Office Home &amp; Student 2019"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="Standard2019Retail">
+                <TextBlock Text="Office Standard 2019"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectStd2019Retail">
+                <TextBlock Text="Project Standard 2019"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectPro2019Retail">
+                <TextBlock Text="Project Professional 2019"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioStd2019Retail">
+                <TextBlock Text="Visio Standard 2019"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioPro2019Retail">
+                <TextBlock Text="Visio Professional 2019"/>
+            </ComboBoxItem>
+
+            <!-- Separador -->
+            <ComboBoxItem IsEnabled="False">
+                <TextBlock Text="--- Microsoft Office 2016 ---" FontWeight="Bold"/>
+            </ComboBoxItem>
+
             <!-- Edición 2016 -->
-            <ComboBoxItem Content="Office Professional Plus 2016" Tag="ProPlusRetail"/>
-            <ComboBoxItem Content="Office Home &amp; Business 2016" Tag="HomeBusinessRetail"/>
-            <ComboBoxItem Content="Office Home &amp; Student 2016" Tag="HomeStudentRetail"/>
-            <ComboBoxItem Content="Office Standart 2016" Tag="StandardRetail"/>
-            <ComboBoxItem Content="Project Standard 2016" Tag="ProjectStdRetail"/>
-            <ComboBoxItem Content="Project Professional 2016" Tag="ProjectProRetail"/>
-            <ComboBoxItem Content="Visio Standard 2016" Tag="VisioStdRetail"/>
-            <ComboBoxItem Content="Visio Professional 2016" Tag="VisioProRetail"/>            
+            <ComboBoxItem Tag="ProPlusRetail">
+                <TextBlock Text="Office Professional Plus 2016"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="HomeBusinessRetail">
+                <TextBlock Text="Office Home &amp; Business 2016"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="HomeStudentRetail">
+                <TextBlock Text="Office Home &amp; Student 2016"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="StandardRetail">
+                <TextBlock Text="Office Standard 2016"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectStdRetail">
+                <TextBlock Text="Project Standard 2016"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="ProjectProRetail">
+                <TextBlock Text="Project Professional 2016"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioStdRetail">
+                <TextBlock Text="Visio Standard 2016"/>
+            </ComboBoxItem>
+            <ComboBoxItem Tag="VisioProRetail">
+                <TextBlock Text="Visio Professional 2016"/>
+            </ComboBoxItem>
         </ComboBox>
-        <CheckBox x:Name="architectureCheckBox" Content="Sistema operativo x64" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,30,0,0" IsEnabled="True"/>
+        <CheckBox x:Name="architectureCheckBox" Content="OS x64" FontWeight="Bold" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="221,45,0,0" IsEnabled="True"/>
 
         <!-- Fila 2 -->
-        <TextBlock Text="Seleccion de Idioma:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0"/>
+        <TextBlock Text="Seleccion de Idioma:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,69,0,0" FontWeight="Bold"/>
         <ComboBox x:Name="languageComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,90,0,0">
-	    <ComboBoxItem Content="English" Tag="en-US"/>
+            <ComboBoxItem Content="English" Tag="en-US"/>
             <ComboBoxItem Content="Arabic" Tag="ar-SA"/>
             <ComboBoxItem Content="Bulgarian" Tag="bg-BG"/>
             <ComboBoxItem Content="Czech" Tag="cs-CZ"/>
@@ -153,80 +272,96 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
             <ComboBoxItem Content="Chinese (Traditional)" Tag="zh-TW"/>
             <!-- Agrega aquí más opciones si es necesario -->
         </ComboBox>
-        <CheckBox x:Name="vlActivationCheckBox" Content="Usar Activacion VL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,90,0,0"/>
-        
+        <CheckBox x:Name="vlActivationCheckBox" Content="Volumen License Code" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,93,0,0" FontWeight="Bold"/>
+
         <!-- Opciones de Activación VL solo si se activa VL -->
-        <StackPanel x:Name="vlOptionsPanel" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,130,0,0" Orientation="Horizontal">
+        <StackPanel x:Name="vlOptionsPanel" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,125,0,0" Orientation="Horizontal">
             <StackPanel Orientation="Vertical" Margin="0,0,10,0">
-                <TextBlock Text="Seleccione la edicion por Volumen:" HorizontalAlignment="Left" Margin="0,0,0,5"/>
+                <TextBlock Text="Seleccione la edicion por Volumen:" HorizontalAlignment="Center" Margin="0,0,0,5"  FontWeight="Bold"/>
                 <ComboBox x:Name="editionComboBox" HorizontalAlignment="Left" Width="200">
-		    <ComboBoxItem Content="****Office 2016****"/>
+                    <!-- Separador -->
+                    <ComboBoxItem IsEnabled="False">
+                        <TextBlock Text="--- Microsoft Office  2016 ---" FontWeight="Bold"/>
+                    </ComboBoxItem>
                     <ComboBoxItem Content="Office 2016 Standard VL"/>
                     <ComboBoxItem Content="Office 2016 Professional VL"/>
                     <ComboBoxItem Content="Project 2016 Standard VL"/>
                     <ComboBoxItem Content="Project 2016 Professional VL"/>
                     <ComboBoxItem Content="Visio 2016 Standard VL"/>
                     <ComboBoxItem Content="Visio 2016 Professional VL"/>
-		    <ComboBoxItem Content="****Office 2019****"/>
+                    <!-- Separador -->
+                    <ComboBoxItem IsEnabled="False">
+                        <TextBlock Text="--- Microsoft Office  2019 ---" FontWeight="Bold"/>
+                    </ComboBoxItem>
                     <ComboBoxItem Content="Office 2019 Standard VL"/>
                     <ComboBoxItem Content="Office 2019 Professional VL"/>
                     <ComboBoxItem Content="Project 2019 Standard VL"/>
                     <ComboBoxItem Content="Project 2019 Professional VL"/>
                     <ComboBoxItem Content="Visio 2019 Standard VL"/>
                     <ComboBoxItem Content="Visio 2019 Professional VL"/>
-		    <ComboBoxItem Content="****Office 2021****"/>
+                    <!-- Separador -->
+                    <ComboBoxItem IsEnabled="False">
+                        <TextBlock Text="--- Microsoft Office  2021 ---" FontWeight="Bold"/>
+                    </ComboBoxItem>
                     <ComboBoxItem Content="Office 2021 Standard VL"/>
                     <ComboBoxItem Content="Office 2021 Professional VL"/>
                     <ComboBoxItem Content="Project 2021 Standard VL"/>
-                    <ComboBoxItem Content="Project 2021 Professional VL"/>		    
+                    <ComboBoxItem Content="Project 2021 Professional VL"/>
                     <ComboBoxItem Content="Visio 2021 Standard VL"/>
                     <ComboBoxItem Content="Visio 2021 Professional VL"/>
-		    <ComboBoxItem Content="****Office 2024****"/>
+                    <!-- Separador -->
+                    <ComboBoxItem IsEnabled="False">
+                        <TextBlock Text="--- Microsoft Office  2024 ---" FontWeight="Bold"/>
+                    </ComboBoxItem>
                     <ComboBoxItem Content="Office 2024 Standard VL"/>
                     <ComboBoxItem Content="Office 2024 Professional VL"/>
                     <ComboBoxItem Content="Project 2024 Standard VL"/>
-                    <ComboBoxItem Content="Project 2024 Professional VL"/>		    
+                    <ComboBoxItem Content="Project 2024 Professional VL"/>
                     <ComboBoxItem Content="Visio 2024 Standard VL"/>
                     <ComboBoxItem Content="Visio 2024 Professional VL"/>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Ingrese la clave de licencia:" HorizontalAlignment="Left" Margin="0,0,0,7"/>
-                <TextBox x:Name="licenseKeyTextBox" HorizontalAlignment="Left" Width="200"/>
+                <TextBlock Text="Ingrese la clave de licencia:" HorizontalAlignment="Center" Margin="0,0,0,8" FontWeight="Bold"/>
+                <TextBox x:Name="licenseKeyTextBox" HorizontalAlignment="Left" Width="216"/>
             </StackPanel>
         </StackPanel>
 
         <!-- Botón de instalación y log -->
-        <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Height="30" Margin="10,200,0,0">
+        <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="30" Margin="10,184,0,0" FontWeight="Bold">
             <Button.ToolTip>
                 <ToolTip Content="Esta opcion permite instalar office con: Activacion por Volumen, Activacion Automatica o Sin Activacion." />
             </Button.ToolTip>
         </Button>
 
-        <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,205,0,0"/>
+        <CheckBox x:Name="autoActivationCheckBox" Content="Activacion Automatica" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,192,0,0" FontWeight="Bold"/>
 
-        <Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="85" Height="30" Margin="255,200,0,0">
+        <Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Right" VerticalAlignment="Top" Width="96" Height="30" Margin="0,184,111,0" FontWeight="Bold">
             <Button.ToolTip>
                 <ToolTip Content="Esta opcion es solo para activar,(solo si tienes office instalado previamente.)" />
             </Button.ToolTip>
         </Button>
 
-        <Button x:Name="Donate" Content="Donate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="30" Margin="345,200,0,0">
+        <Button x:Name="Donate" Content="Donate" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Height="30" Margin="343,184,0,0" FontWeight="Bold">
             <Button.ToolTip>
                 <ToolTip Content="Aqui nos puede donar y apotar en el proyecto." />
             </Button.ToolTip>
         </Button>
 
-        <!-- <TextBlock Text="By Mggons Ver 2.6" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="285,205,0,0"/> -->
-        <TextBlock Text="Log:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,240,0,0"/>
-        <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="410" Height="100" Margin="10,260,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
-     </Grid>
+        <TextBlock Text="Informacion de la Instalacion:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="145,218,0,0" FontWeight="Bold"/>
+        <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="60" Margin="10,241,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+        <Label Content="Version de ODT: 3.0 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
+        <Image Height="73" HorizontalAlignment="Left" Margin="369,12,0,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="67" />
+    </Grid>
 </Window>
 "@
 
 $reader = (New-Object System.Xml.XmlNodeReader $xaml)
 $window = [Windows.Markup.XamlReader]::Load($reader)
 
+# Cargar la imagen en el control 'image1'
+$imageControl = $window.FindName("image1")
+$imageControl.Source = [System.Windows.Media.Imaging.BitmapImage]::new([Uri]::new($tempImagePath))
 $variantComboBox = $window.FindName("variantComboBox")
 $languageComboBox = $window.FindName("languageComboBox")
 $vlActivationCheckBox = $window.FindName("vlActivationCheckBox")
@@ -239,6 +374,7 @@ $activereadButton = $window.FindName("Activeread")
 $logTextBox = $window.FindName("logTextBox")
 $vlOptionsPanel = $window.FindName("vlOptionsPanel")
 $autoActivationCheckBox = $window.FindName("autoActivationCheckBox")
+
 
 function Add-LogMessage {
     param (
