@@ -29,7 +29,7 @@ irm https://cutt.ly/OfficeOnlineInstall | iex
 ```
 ## Imagen de Muestra
 <p align="center">
-<a href=></a><img src="https://i.ibb.co/WB39tKg/Captura-de-pantalla-2025-01-27-154815.png"/>
+<a href=></a><img src="https://github.com/mggons93/Mggons/blob/main/Img.png"/>
 </p>
 
 ```
