@@ -60,7 +60,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
 [xml]$xaml = @"
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Microsoft Office Online By Mggons" Height="379" Width="470" Background="#8e77ab">
+        Title="Microsoft Office Online By Mggons" Height="379" Width="470" Background="#8e77ab" ResizeMode="NoResize">
     <Grid Height="347">
         <!-- Fila 1 -->
         <TextBlock Text="Selecciona tu edicion de Office:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,19,0,0" FontWeight="Bold"/>
