@@ -1,4 +1,4 @@
-# Función para reiniciar el script con privilegios de administrador
+# Funcion para reiniciar el script con privilegios de administrador
 function Start-ProcessAsAdmin {
     param (
         [string]$file,
@@ -7,9 +7,9 @@ function Start-ProcessAsAdmin {
     Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
 }
 
-# Comprobar si el script se está ejecutando como administrador
+# Comprobar si el script se estÃ¡ ejecutando como administrador
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    # Si no está ejecutándose como administrador, relanza el script con privilegios elevados
+    # Si no estÃ¡ ejecutÃ¡ndose como administrador, relanza el script con privilegios elevados
     Start-ProcessAsAdmin -file "powershell.exe" -arguments "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
     exit
 }
@@ -25,7 +25,7 @@ $imageUrl = "https://granikos.eu/wp-content/uploads/2023/02/Logo-Microsoft365.pn
 # Obtener la hora actual formateada para el nombre del archivo
 $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 
-# Ruta temporal con nombre dinámico
+# Ruta temporal con nombre dinÃ¡mico
 $tempImagePath = [System.IO.Path]::Combine($env:TEMP, "office365_$timestamp.png")
 
 # Descargar la imagen si no existe o si quieres forzar que se actualice cada vez
@@ -54,7 +54,7 @@ $consolePtr = [Win32]::GetConsoleWindow()
 $urlIcono = "https://raw.githubusercontent.com/mggons93/Mggons/refs/heads/main/OfficeIco.ico"
 $rutaTemporalIcono = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), "mi_icono.ico")
 
-# Descargar el icono desde la URL y guardarlo en la ubicación temporal
+# Descargar el icono desde la URL y guardarlo en la ubicacion temporal
 Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
 
 [xml]$xaml = @"
@@ -108,7 +108,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
                 <TextBlock Text="--- Microsoft Office 2024 ---" FontWeight="Bold"/>
             </ComboBoxItem>
 
-            <!-- Edición 2024 -->
+            <!-- Edicion 2024 -->
             <ComboBoxItem Tag="ProPlus2024Retail">
                 <TextBlock Text="Office Professional Plus 2024"/>
             </ComboBoxItem>
@@ -136,7 +136,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
                 <TextBlock Text="--- Microsoft Office 2021 ---" FontWeight="Bold"/>
             </ComboBoxItem>
 
-            <!-- Edición 2021 -->
+            <!-- Edicion 2021 -->
             <ComboBoxItem Tag="ProPlus2021Retail">
                 <TextBlock Text="Office Professional Plus 2021"/>
             </ComboBoxItem>
@@ -167,7 +167,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
                 <TextBlock Text="--- Microsoft Office  2019 ---" FontWeight="Bold"/>
             </ComboBoxItem>
 
-            <!-- Edición 2019 -->
+            <!-- Edicion 2019 -->
             <ComboBoxItem Tag="ProPlus2019Retail">
                 <TextBlock Text="Office Professional Plus 2019"/>
             </ComboBoxItem>
@@ -198,7 +198,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
                 <TextBlock Text="--- Microsoft Office 2016 ---" FontWeight="Bold"/>
             </ComboBoxItem>
 
-            <!-- Edición 2016 -->
+            <!-- Edicion 2016 -->
             <ComboBoxItem Tag="ProPlusRetail">
                 <TextBlock Text="Office Professional Plus 2016"/>
             </ComboBoxItem>
@@ -270,11 +270,11 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
             <ComboBoxItem Content="Ukrainian" Tag="uk-UA"/>
             <ComboBoxItem Content="Chinese (Simplified)" Tag="zh-CN"/>
             <ComboBoxItem Content="Chinese (Traditional)" Tag="zh-TW"/>
-            <!-- Agrega aquí más opciones si es necesario -->
+            <!-- Agrega aquÃ­ mÃ¡s opciones si es necesario -->
         </ComboBox>
         <CheckBox x:Name="vlActivationCheckBox" Content="Volumen License Code" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,93,0,0" FontWeight="Bold"/>
 
-        <!-- Opciones de Activación VL solo si se activa VL -->
+        <!-- Opciones de Activacion VL solo si se activa VL -->
         <StackPanel x:Name="vlOptionsPanel" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,125,0,0" Orientation="Horizontal">
             <StackPanel Orientation="Vertical" Margin="0,0,10,0">
                 <TextBlock Text="Seleccione la edicion por Volumen:" HorizontalAlignment="Center" Margin="0,0,0,5"  FontWeight="Bold"/>
@@ -327,16 +327,16 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
             </StackPanel>
         </StackPanel>
 
-        <!-- Botón de instalación y log -->
+        <!-- Boton de instalacion y log -->
         <Button x:Name="installButton" Content="Instalar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="30" Margin="10,184,0,0" FontWeight="Bold">
             <Button.ToolTip>
                 <ToolTip Content="Esta opcion permite instalar office con: Activacion por Volumen, Activacion Automatica o Sin Activacion." />
             </Button.ToolTip>
         </Button>
 
-        <CheckBox x:Name="autoActivationCheckBox" Content="Activar Automatico" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="96,192,0,0" FontWeight="Bold" IsEnabled="True"/>
+        <CheckBox x:Name="autoActivationCheckBox" Content="Activar Automatico" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="92,192,0,0" FontWeight="Bold" IsChecked="True"/>
 
-        <Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Right" VerticalAlignment="Top" Width="96" Height="30" Margin="0,184,111,0" FontWeight="Bold">
+       <Button x:Name="Activeread" Content="Solo Activar" HorizontalAlignment="Right" VerticalAlignment="Top" Width="96" Height="30" Margin="0,184,129,0" FontWeight="Bold">
             <Button.ToolTip>
                 <ToolTip Content="Esta opcion es solo para activar,(solo si tienes office instalado previamente.)" />
             </Button.ToolTip>
@@ -350,7 +350,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
 
         <TextBlock Text="Informacion de la Instalacion:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="145,218,0,0" FontWeight="Bold"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="60" Margin="10,241,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
-        <Label Content="Version de ODT: 3.0 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
+        <Label Content="Version de ODT: 3.2 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
         <Image Height="73" HorizontalAlignment="Left" Margin="369,12,0,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="67" />
     </Grid>
 </Window>
@@ -397,6 +397,12 @@ $vlActivationCheckBox.Add_Unchecked({
 
 $autoActivationCheckBox.Add_Checked({
     $vlActivationCheckBox.IsChecked = $false
+    $autoActivationCheckBox.IsEnabled = $true
+})
+
+$autoActivationCheckBox.Add_Checked({
+    $vlActivationCheckBox.IsChecked = $false
+    $autoActivationCheckBox.IsEnabled = $false
 })
 
 $autoActivationCheckBox.Add_Unchecked({
@@ -410,24 +416,33 @@ Start-Process "https://cutt.ly/DonacionSyA"
 })
 
 $activereadButton.Add_Click({
-            Add-LogMessage "Iniciando Activacion. Espere..."
-            $url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
-            $url = $url -replace "%blank%", ""
-            $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
-            $outputPath1 = $outputPath1 -replace "%blank%", ""
+  Add-LogMessage "Iniciando Activacion. Espere..."
+  $url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
+  $url = $url -replace "%blank%", ""
+  $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
+  $outputPath1 = $outputPath1 -replace "%blank%", ""
 
-            Add-LogMessage "Activando..."
-            Invoke-WebRequest -Uri $url -OutFile $outputPath1
+  Add-LogMessage "Activando..."
+  Invoke-WebRequest -Uri $url -OutFile $outputPath1
 
-            # Ejecutar de forma oculta y esperar a que termine
-            Start-Process -FilePath $outputPath1 /Ohook -WindowStyle Hidden -Wait -Verb RunAs
+  # Ejecutar de forma oculta y esperar a que termine
+  Start-Process -FilePath $outputPath1 /Ohook -WindowStyle Hidden -Wait -Verb RunAs
 
-            #Add-LogMessage "Eliminando Archivos Usados..."
-            Remove-Item -Path $outputPath1 -Force
-            Add-LogMessage "Activacion completada."
+  #Add-LogMessage "Eliminando Archivos Usados..."
+  Remove-Item -Path $outputPath1 -Force
+  Add-LogMessage "Activacion completada."
 })
 
 $installButton.Add_Click({
+
+# Desactivar el boton para evitar mºltiples clics
+    $installButton.IsEnabled = $false
+    
+    # Desactivar el boton para evitar mºltiples clics
+    $activereadButton.IsEnabled = $false
+    
+
+    # Recolecta datos de la GUI
     $selectedVariant = $variantComboBox.SelectedItem.Tag
     $selectedLanguageFull = $languageComboBox.SelectedItem.Tag
     $selectedLanguage = $selectedLanguageFull -replace '.*\[(.*?)\]', '$1'
@@ -436,13 +451,12 @@ $installButton.Add_Click({
     $editionVL = if ($useVL) { $editionComboBox.SelectedItem.Content } else { $null }
     $licenseKey = if ($useVL) { $licenseKeyTextBox.Text } else { $null }
     $autoActivate = $autoActivationCheckBox.IsChecked
-    
-    $url = "https://%blank%c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=%blank%$selectedVariant&platform=$architecture%blank%&language=$selectedLanguage&version=O16GA"
-    $url = $url -replace "%blank%", ""
-    $outputFile = "$env:TEMP\${selectedVariant}-%blank%${selectedLanguage}-%blank%${architecture}.exe"
-    $outputFile = $outputFile -replace "%blank%", ""
-    
-    $message = "Se procedera a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
+
+    $url = "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=$selectedVariant&platform=$architecture&language=$selectedLanguage&version=O16GA"
+    $outputFile = "$env:TEMP\${selectedVariant}-${selectedLanguage}-${architecture}.exe"
+    $installButton.Content = "Instalando..." 
+    # Mensaje de confirmación
+    $message = "Se procederá a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
     if ($useVL) {
         $message += "`n- Edición VL: $editionVL"
         $message += "`n- Clave de licencia: $licenseKey"
@@ -450,103 +464,117 @@ $installButton.Add_Click({
     $message += "`n- Variante: $selectedVariant"
     $message += "`n- Idioma: $selectedLanguage"
     $message += "`n- Sistema: $architecture"
-    $message += "`n- Activacion Automatica: $($autoActivate -eq $true)"
-    $result = [System.Windows.MessageBox]::Show($message, "Confirmar Instalacion", [System.Windows.MessageBoxButton]::YesNo, [System.Windows.MessageBoxImage]::Question)
+    $message += "`n- Activación Automática: $($autoActivate -eq $true)"
+    $result = [System.Windows.MessageBox]::Show($message, "Confirmar Instalación", [System.Windows.MessageBoxButton]::YesNo, [System.Windows.MessageBoxImage]::Question)
 
     if ($result -eq [System.Windows.MessageBoxResult]::Yes) {
-        Add-LogMessage "Descargando $selectedVariant $selectedLanguage para sistema $architecture..."
-		Add-LogMessage "Descarga completada. Iniciando la instalacion..."
-        Invoke-WebRequest -Uri $url -OutFile $outputFile
-       
-        Start-Process -FilePath $outputFile -Wait
-        "taskkill /f /im OfficeC2RClient.exe" | cmd
+        # Inicia la tarea pesada en segundo plano
+        $job = Start-Job -ScriptBlock {
+            param (
+                $url, $outputFile, $autoActivate, $useVL, $editionVL, $licenseKey
+            )
+            $log = @()
+            
+            $log += "Descargando $url ..."
+            try {
+                Invoke-WebRequest -Uri $url -OutFile $outputFile -ErrorAction Stop
+                $log += "Descarga completada. Iniciando la instalación..."
+                Start-Process -FilePath $outputFile -Wait
+                "taskkill /f /im OfficeC2RClient.exe" | cmd
+                $log += "Instalación completada."
+            } catch {
+                $log += "Error durante la descarga o instalación: $_"
+                return $log
+            }
 
-        Add-LogMessage "Instalacion completada."
+            if ($autoActivate -and -not $useVL) {
+                $log += "Iniciando Activación. Espere..."
+                $actUrl = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd"
+                $outputPath1 = "$env:TEMP\Ohook_Activation_AIO.cmd"
+                try {
+                    Invoke-WebRequest -Uri $actUrl -OutFile $outputPath1 -ErrorAction Stop
+                    $log += "Activando..."
+                    Start-Process -FilePath $outputPath1 -ArgumentList "/Ohook" -WindowStyle Hidden -Wait -Verb RunAs
+                    Remove-Item -Path $outputPath1 -Force
+                    $log += "Activación completada."
+                } catch {
+                    $log += "Error durante la activación automática: $_"
+                }
+            }
 
-        if ($autoActivate -and -not $useVL) {
-            Add-LogMessage "Iniciando Activacion. Espere..."
-            $url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
-            $url = $url -replace "%blank%", ""
-            $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
-            $outputPath1 = $outputPath1 -replace "%blank%", ""
+            if ($useVL) {
+                $log += "Convirtiendo Office Retail a Volumen. Espere..."
+                $edition = switch ($editionVL) {
+                    "Office 2016 Standard VL" { "StandardVL" }
+                    "Office 2016 Professional VL" { "ProPlusVL" }
+                    "Project 2016 Standard VL" { "ProjectStdVL" }
+                    "Project 2016 Professional VL" { "ProjectProVL" }
+                    "Visio 2016 Standard VL" { "VisioStdVL" }
+                    "Visio 2016 Professional VL" { "VisioProVL" }
+                    "Office 2019 Standard VL" { "Standard2019VL" }
+                    "Office 2019 Professional VL" { "ProPlus2019VL" }
+                    "Project 2019 Standard VL" { "ProjectStd2019VL" }
+                    "Project 2019 Professional VL" { "ProjectPro2019VL" }
+                    "Visio 2019 Standard VL" { "VisioStd2019VL" }
+                    "Visio 2019 Professional VL" { "VisioPro2019VL" }
+                    "Office 2021 Standard VL" { "Standard2021VL" }
+                    "Office 2021 Professional VL" { "ProPlus2021VL" }
+                    "Project 2021 Standard VL" { "ProjectStd2021VL" }
+                    "Project 2021 Professional VL" { "ProjectPro2021VL" }
+                    "Visio 2021 Standard VL" { "VisioStd2021VL" }
+                    "Visio 2021 Professional VL" { "VisioPro2021VL" }
+                    "Office 2024 Standard VL" { "Standard2024VL" }
+                    "Office 2024 Professional VL" { "ProPlus2024VL" }
+                    "Project 2024 Standard VL" { "ProjectStd2024VL" }
+                    "Project 2024 Professional VL" { "ProjectPro2024VL" }
+                    "Visio 2024 Standard VL" { "VisioStd2024VL" }
+                    "Visio 2024 Professional VL" { "VisioPro2024VL" }
+                    default { $null }
+                }
+                $log += "Edición seleccionada: $editionVL ($edition)"
+                $officePath = if (Test-Path "$env:ProgramFiles\Microsoft Office\Office16") {
+                    "$env:ProgramFiles\Microsoft Office\Office16"
+                } elseif (Test-Path "$env:ProgramFiles(x86)\Microsoft Office\Office16") {
+                    "$env:ProgramFiles(x86)\Microsoft Office\Office16"
+                } else {
+                    $log += "No se encontró la instalación de Microsoft Office en Office16."
+                    return $log
+                }
+                Set-Location $officePath
+                $licenseFiles = Get-ChildItem -Path "..\root\Licenses16\" -Filter "$edition*.xrm-ms"
+                $log += "Archivos de licencia encontrados: $($licenseFiles.Count)"
+                foreach ($file in $licenseFiles) {
+                    $filePath = "..\root\Licenses16\$($file.Name)"
+                    $log += "Instalando Archivo: $filePath"
+                    cscript ospp.vbs /inslic:"$filePath"
+                }
+                $log += "Instalando licencia: $licenseKey"
+                cscript ospp.vbs /inpkey:$licenseKey
+                cscript ospp.vbs /act
+                $log += "Activación completada."
+            }
+            return $log
+        } -ArgumentList $url, $outputFile, $autoActivate, $useVL, $editionVL, $licenseKey
 
-            Add-LogMessage "Activando..."
-            Invoke-WebRequest -Uri $url -OutFile $outputPath1
-
-            # Ejecutar de forma oculta y esperar a que termine
-            Start-Process -FilePath $outputPath1 /Ohook -WindowStyle Hidden -Wait -Verb RunAs
-
-            #Add-LogMessage "Eliminando Archivos Usados..."
-            Remove-Item -Path $outputPath1 -Force
-            Add-LogMessage "Activacion completada."
+        # Monitorea el job y actualiza la interfaz
+        while ($job.State -eq 'Running') {
+            [System.Windows.Forms.Application]::DoEvents()
+            Start-Sleep -Milliseconds 200
         }
-
-       if ($useVL) {
-        Add-LogMessage "Convirtiendo Office Retail a Vol. Espere..."
-        
-        $edition = switch ($editionVL) {
-            "Office 2016 Standard VL" { "StandardVL" }
-            "Office 2016 Professional VL" { "ProPlusVL" }
-	        "Project 2016 Standard VL" { "ProjectStdVL" }
-            "Project 2016 Professional VL" { "ProjectProVL" }
-	        "Visio 2016 Standard VL" { "VisioStdVL" }
-            "Visio 2016 Professional VL" { "VisioProVL" }
-	    
-            "Office 2019 Standard VL" { "Standard2019VL" }
-            "Office 2019 Professional VL" { "ProPlus2019VL" }
-	        "Project 2019 Standard VL" { "ProjectStd2019VL" }
-            "Project 2019 Professional VL" { "ProjectPro2019VL" }
-	        "Visio 2019 Standard VL" { "VisioStd2019VL" }
-            "Visio 2019 Professional VL" { "VisioPro2019VL" }
-	    
-            "Office 2021 Standard VL" { "Standard2021VL" }
-            "Office 2021 Professional VL" { "ProPlus2021VL" }
-            "Project 2021 Standard VL" { "ProjectStd2021VL" }
-            "Project 2021 Professional VL" { "ProjectPro2021VL" }
-            "Visio 2021 Standard VL" { "VisioStd2021VL" }
-            "Visio 2021 Professional VL" { "VisioPro2021VL" }
-
-     	    "Office 2024 Standard VL" { "Standard2024VL" }
-            "Office 2024 Professional VL" { "ProPlus2024VL" }
-            "Project 2024 Standard VL" { "ProjectStd2024VL" }
-            "Project 2024 Professional VL" { "ProjectPro2024VL" }
-            "Visio 2024 Standard VL" { "VisioStd2024VL" }
-            "Visio 2024 Professional VL" { "VisioPro2024VL" }
-        }
-
-        Add-LogMessage "Edición seleccionada: $editionVL ($edition)"
-
-        if (Test-Path "$env:ProgramFiles\Microsoft Office\Office16") {
-            Set-Location "$env:ProgramFiles\Microsoft Office\Office16"
-            Add-LogMessage "Cambiado al directorio: $env:ProgramFiles\Microsoft Office\Office16"
-        } elseif (Test-Path "$env:ProgramFiles(x86)\Microsoft Office\Office16") {
-            # Cambiar al directorio de Microsoft Office (32 bits)
-            Set-Location "$env:ProgramFiles(x86)\Microsoft Office\Office16"
-            Add-LogMessage "Cambiado al directorio: $env:ProgramFiles(x86)\Microsoft Office\Office16"
-        } else {
-            $errorMsg = "No se encontró la instalación de Microsoft Office en Office16."
-            Add-LogMessage $errorMsg
-            Write-Error $errorMsg
-            exit
-        }
-
-
-        $licenseFiles = Get-ChildItem -Path "..\root\Licenses16\" -Filter "$edition*.xrm-ms"
-        Add-LogMessage "Archivos de licencia encontrados: $($licenseFiles.Count)"
-        
-        # Iterar sobre cada archivo y ejecutar el comando cscript
-        foreach ($file in $licenseFiles) {
-            $filePath = "..\root\Licenses16\$($file.Name)"
-            Add-LogMessage "Instalando Archivo: $filePath"
-            cscript ospp.vbs /inslic:"$filePath"
-        }
-            Add-LogMessage "Instalando licencia: $licenseKey"
-            cscript ospp.vbs /inpkey:$licenseKey
-            cscript ospp.vbs /act
-            Add-LogMessage "Activacion completada."
-        }
-    }
+        $msgs = Receive-Job $job
+        foreach ($msg in $msgs) { Add-LogMessage $msg }
+        Remove-Job $job
+} else {
+    # Código a ejecutar si el usuario selecciona "No"
+    $installButton.IsEnabled = $true
+    
+    # Desactivar el boton para evitar mºltiples clics
+    $activereadButton.IsEnabled = $true
+    $installButton.Content = "Instalar"
+    # Puedes agregar aquí cualquier otra acción que desees
+}
 })
+
 
 $window.ShowDialog() | Out-Null
 [Win32]::ShowWindow($consolePtr, 9) # 9 = Restaurar la ventana
