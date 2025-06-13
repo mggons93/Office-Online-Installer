@@ -63,7 +63,11 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
         Title="Microsoft Office Online By Mggons" Height="379" Width="470" Background="#8e77ab" ResizeMode="NoResize">
     <Grid Height="347">
         <!-- Fila 1 -->
-        <TextBlock Text="Selecciona tu edicion de Office:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="29,19,0,0" FontWeight="Bold"/>
+        <TextBlock Text="Selecciona tu edicion de Office:" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Top" 
+        Margin="29,19,0,0" 
+        FontWeight="Bold"/>
         <ComboBox x:Name="variantComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,42,0,0">
             <!-- Office 365 -->
             <ComboBoxItem IsEnabled="False">
@@ -227,7 +231,11 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
         <CheckBox x:Name="architectureCheckBox" Content="OS x64" FontWeight="Bold" IsChecked="$($is64Bit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="221,45,0,0" IsEnabled="True"/>
 
         <!-- Fila 2 -->
-        <TextBlock Text="Seleccion de Idioma:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,69,0,0" FontWeight="Bold"/>
+        <TextBlock Text="Seleccion de Idioma:" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Top" 
+        Margin="53,69,0,0" 
+        FontWeight="Bold"/>
         <ComboBox x:Name="languageComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="10,90,0,0">
             <ComboBoxItem Content="English" Tag="en-US"/>
             <ComboBoxItem Content="Arabic" Tag="ar-SA"/>
@@ -272,10 +280,16 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
             <ComboBoxItem Content="Chinese (Traditional)" Tag="zh-TW"/>
             <!-- Agrega aquÃ­ mÃ¡s opciones si es necesario -->
         </ComboBox>
-        <CheckBox x:Name="vlActivationCheckBox" Content="Volumen License Code" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,93,0,0" FontWeight="Bold"/>
+        <CheckBox x:Name="vlActivationCheckBox" 
+        Content="Volumen License Code" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Top" 
+        Margin="220,93,0,0" FontWeight="Bold"/>
 
         <!-- Opciones de Activacion VL solo si se activa VL -->
-        <StackPanel x:Name="vlOptionsPanel" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,125,0,0" Orientation="Horizontal">
+        <StackPanel x:Name="vlOptionsPanel" Visibility="Collapsed" 
+        HorizontalAlignment="Left" VerticalAlignment="Top" 
+        Margin="10,125,0,0" Orientation="Horizontal">
             <StackPanel Orientation="Vertical" Margin="0,0,10,0">
                 <TextBlock Text="Seleccione la edicion por Volumen:" HorizontalAlignment="Center" Margin="0,0,0,5"  FontWeight="Bold"/>
                 <ComboBox x:Name="editionComboBox" HorizontalAlignment="Left" Width="200">
@@ -349,7 +363,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
         </Button>
 
         <TextBlock Text="Informacion de la Instalacion:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="145,218,0,0" FontWeight="Bold"/>
-        <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="60" Margin="10,241,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+        <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="60" Margin="10,241,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" FontWeight="Bold"/>
         <Label Content="Version de ODT: 3.2 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
         <Image Height="73" HorizontalAlignment="Left" Margin="369,12,0,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="67" />
     </Grid>
@@ -416,21 +430,47 @@ Start-Process "https://cutt.ly/DonacionSyA"
 })
 
 $activereadButton.Add_Click({
-  Add-LogMessage "Iniciando Activacion. Espere..."
-  $url = "https://raw.githubusercontent.com/%blank%massgravel/Microsoft-%blank%Activation-Scripts/refs/%blank%heads/master/MAS/All-In-%blank%One-Version-KL/MAS_AIO.%blank%cmd"
-  $url = $url -replace "%blank%", ""
-  $outputPath1 = "$env:TEMP\O%blank%hook_Acti%blank%vation_AI%blank%O.cmd"
-  $outputPath1 = $outputPath1 -replace "%blank%", ""
+    $installButton.IsEnabled = $false
+    # Desactivar el botón para evitar múltiples clics
+    $activereadButton.IsEnabled = $false
+    $activereadButton.Content = "Activando..."
 
-  Add-LogMessage "Activando..."
-  Invoke-WebRequest -Uri $url -OutFile $outputPath1
+    # Preparar las variables
+    $url = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd"
+    $outputPath1 = "$env:TEMP\Ohook_Activation_AIO.cmd"
 
-  # Ejecutar de forma oculta y esperar a que termine
-  Start-Process -FilePath $outputPath1 /Ohook -WindowStyle Hidden -Wait -Verb RunAs
+    # Iniciar la tarea pesada en segundo plano
+    $job = Start-Job -ScriptBlock {
+        param($url, $outputPath1)
+        $log = @()
+        $log += "Iniciando Activación. Espere..."
+        try {
+            Invoke-WebRequest -Uri $url -OutFile $outputPath1 -ErrorAction Stop
 
-  #Add-LogMessage "Eliminando Archivos Usados..."
-  Remove-Item -Path $outputPath1 -Force
-  Add-LogMessage "Activacion completada."
+            $log += "Activando..."
+            Start-Process -FilePath $outputPath1 -ArgumentList "/Ohook" -WindowStyle Hidden -Wait -Verb RunAs
+
+            Remove-Item -Path $outputPath1 -Force
+            $log += "Activación completada."
+        } catch {
+            $log += "Error durante la activación: $_"
+        }
+        return $log
+    } -ArgumentList $url, $outputPath1
+
+    # Monitorea el job y actualiza la interfaz
+    while ($job.State -eq 'Running') {
+        [System.Windows.Forms.Application]::DoEvents()
+        Start-Sleep -Milliseconds 200
+    }
+    $msgs = Receive-Job $job
+    foreach ($msg in $msgs) { Add-LogMessage $msg }
+    Remove-Job $job
+
+    # Restaurar el botón
+    $installButton.IsEnabled = $true
+    $activereadButton.IsEnabled = $true
+    $activereadButton.Content = "Solo Activar"    
 })
 
 $installButton.Add_Click({
