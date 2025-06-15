@@ -364,7 +364,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
 
         <TextBlock Text="Informacion de la Instalacion:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="145,218,0,0" FontWeight="Bold"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="60" Margin="10,241,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" FontWeight="Bold"/>
-        <Label Content="Version de ODT: 3.2 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
+        <Label Content="Version de ODT: 3.3 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
         <Image Height="73" HorizontalAlignment="Left" Margin="369,12,0,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="67" />
     </Grid>
 </Window>
