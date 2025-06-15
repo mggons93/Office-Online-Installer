@@ -438,7 +438,7 @@ $activereadButton.Add_Click({
     $outputPath1 = "$env:TEMP\Ohook_Activation_AIO.cmd"
 
     $log = @()
-    $log += "Descargando script de activación..."
+    $log += "🔄 Descargando script de activación..."
 
     # Descargar el script en segundo plano
     $job = Start-Job -ScriptBlock {
@@ -455,13 +455,12 @@ $activereadButton.Add_Click({
     try {
         Receive-Job $job
         Remove-Job $job
-        $log += "Script descargado. Iniciando activación..."
+        $log += "✅ Script descargado. Iniciando activación..."
 
-        # Ejecutar como administrador FUERA del Job
+        # Ejecutar como administrador fuera del Job
         Start-Process -FilePath $outputPath1 -ArgumentList "/Ohook" -Verb RunAs -Wait
-        $log += "Activación completada."
 
-        # Limpieza
+        $log += "✅ Activación completada."
         Remove-Item -Path $outputPath1 -Force
     } catch {
         $log += "❌ Error durante la activación: $_"
@@ -473,6 +472,7 @@ $activereadButton.Add_Click({
     $activereadButton.IsEnabled = $true
     $activereadButton.Content = "Solo Activar"
 })
+
 
 $installButton.Add_Click({
 
