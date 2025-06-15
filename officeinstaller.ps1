@@ -364,7 +364,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
 
         <TextBlock Text="Informacion de la Instalacion:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="145,218,0,0" FontWeight="Bold"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="60" Margin="10,241,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" FontWeight="Bold"/>
-        <Label Content="Version de ODT: 3.2 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
+        <Label Content="Version de ODT: 3.3 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
         <Image Height="73" HorizontalAlignment="Left" Margin="369,12,0,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="67" />
     </Grid>
 </Window>
@@ -431,46 +431,47 @@ Start-Process "https://cutt.ly/DonacionSyA"
 
 $activereadButton.Add_Click({
     $installButton.IsEnabled = $false
-    # Desactivar el botón para evitar múltiples clics
     $activereadButton.IsEnabled = $false
     $activereadButton.Content = "Activando..."
 
-    # Preparar las variables
     $url = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd"
     $outputPath1 = "$env:TEMP\Ohook_Activation_AIO.cmd"
 
-    # Iniciar la tarea pesada en segundo plano
+    $log = @()
+    $log += "Descargando script de activación..."
+
+    # Descargar el script en segundo plano
     $job = Start-Job -ScriptBlock {
         param($url, $outputPath1)
-        $log = @()
-        $log += "Iniciando Activación. Espere..."
-        try {
-            Invoke-WebRequest -Uri $url -OutFile $outputPath1 -ErrorAction Stop
-
-            $log += "Activando..."
-            Start-Process -FilePath $outputPath1 -ArgumentList "/Ohook" -WindowStyle Hidden -Wait -Verb RunAs
-
-            Remove-Item -Path $outputPath1 -Force
-            $log += "Activación completada."
-        } catch {
-            $log += "Error durante la activación: $_"
-        }
-        return $log
+        Invoke-WebRequest -Uri $url -OutFile $outputPath1 -ErrorAction Stop
     } -ArgumentList $url, $outputPath1
 
-    # Monitorea el job y actualiza la interfaz
+    # Esperar a que termine la descarga
     while ($job.State -eq 'Running') {
         [System.Windows.Forms.Application]::DoEvents()
         Start-Sleep -Milliseconds 200
     }
-    $msgs = Receive-Job $job
-    foreach ($msg in $msgs) { Add-LogMessage $msg }
-    Remove-Job $job
 
-    # Restaurar el botón
+    try {
+        Receive-Job $job
+        Remove-Job $job
+        $log += "Script descargado. Iniciando activación..."
+
+        # Ejecutar como administrador FUERA del Job
+        Start-Process -FilePath $outputPath1 -ArgumentList "/Ohook" -Verb RunAs -Wait
+        $log += "Activación completada."
+
+        # Limpieza
+        Remove-Item -Path $outputPath1 -Force
+    } catch {
+        $log += "❌ Error durante la activación: $_"
+    }
+
+    foreach ($msg in $log) { Add-LogMessage $msg }
+
     $installButton.IsEnabled = $true
     $activereadButton.IsEnabled = $true
-    $activereadButton.Content = "Solo Activar"    
+    $activereadButton.Content = "Solo Activar"
 })
 
 $installButton.Add_Click({
