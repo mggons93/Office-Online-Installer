@@ -7,9 +7,9 @@ function Start-ProcessAsAdmin {
     Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
 }
 
-# Comprobar si el script se estÃƒÂ¡ ejecutando como administrador
+# Comprobar si el script se estiÂ¡ ejecutando como administrador
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    # Si no estÃƒÂ¡ ejecutÃƒÂ¡ndose como administrador, relanza el script con privilegios elevados
+    # Si no estiÂ¡ ejecutiÂ¡ndose como administrador, relanza el script con privilegios elevados
     Start-ProcessAsAdmin -file "powershell.exe" -arguments "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
     exit
 }
@@ -25,7 +25,7 @@ $imageUrl = "https://granikos.eu/wp-content/uploads/2023/02/Logo-Microsoft365.pn
 # Obtener la hora actual formateada para el nombre del archivo
 $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 
-# Ruta temporal con nombre dinÃƒÂ¡mico
+# Ruta temporal con nombre diniÂ¡mico
 $tempImagePath = [System.IO.Path]::Combine($env:TEMP, "office365_$timestamp.png")
 
 # Descargar la imagen si no existe o si quieres forzar que se actualice cada vez
@@ -278,7 +278,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
             <ComboBoxItem Content="Ukrainian" Tag="uk-UA"/>
             <ComboBoxItem Content="Chinese (Simplified)" Tag="zh-CN"/>
             <ComboBoxItem Content="Chinese (Traditional)" Tag="zh-TW"/>
-            <!-- Agrega aquÃƒÂ­ mÃƒÂ¡s opciones si es necesario -->
+            <!-- Agrega aquiÂ­ miÂ¡s opciones si es necesario -->
         </ComboBox>
         <CheckBox x:Name="vlActivationCheckBox" 
         Content="Volumen License Code" 
@@ -364,7 +364,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
 
         <TextBlock Text="Informacion de la Instalacion:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="145,218,0,0" FontWeight="Bold"/>
         <TextBox x:Name="logTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Height="60" Margin="10,241,0,0" IsReadOnly="True" VerticalScrollBarVisibility="Auto" FontWeight="Bold"/>
-        <Label Content="Version de ODT: 3.3 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
+        <Label Content="Version de ODT: 3.2 " Height="27" HorizontalAlignment="Left" Margin="168,307,0,0" Name="label1" VerticalAlignment="Top" Width="124" FontWeight="Bold"/>
         <Image Height="73" HorizontalAlignment="Left" Margin="369,12,0,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="67" />
     </Grid>
 </Window>
@@ -431,7 +431,7 @@ Start-Process "https://cutt.ly/DonacionSyA"
 
 $activereadButton.Add_Click({
     $installButton.IsEnabled = $false
-    # Desactivar el boton para evitar mÃºltiples clics
+    # Desactivar el boton para evitar miltiples clics
     $activereadButton.IsEnabled = $false
     $activereadButton.Content = "Activando..."
 
@@ -496,7 +496,7 @@ $installButton.Add_Click({
     $outputFile = "$env:TEMP\${selectedVariant}-${selectedLanguage}-${architecture}.exe"
     $installButton.Content = "Instalando..." 
     # Mensaje de confirmacion
-    $message = "Se procederÃ¡ a descargar e instalar la siguiente variante de Office 365. Â¿Desea continuar?"
+    $message = "Se procedera a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
     if ($useVL) {
         $message += "`n- Edicion VL: $editionVL"
         $message += "`n- Clave de licencia: $licenseKey"
@@ -504,7 +504,7 @@ $installButton.Add_Click({
     $message += "`n- Variante: $selectedVariant"
     $message += "`n- Idioma: $selectedLanguage"
     $message += "`n- Sistema: $architecture"
-    $message += "`n- Activacion AutomÃ¡tica: $($autoActivate -eq $true)"
+    $message += "`n- Activacion Automatica: $($autoActivate -eq $true)"
     $result = [System.Windows.MessageBox]::Show($message, "Confirmar Instalacion", [System.Windows.MessageBoxButton]::YesNo, [System.Windows.MessageBoxImage]::Question)
 
     if ($result -eq [System.Windows.MessageBoxResult]::Yes) {
@@ -538,7 +538,7 @@ $installButton.Add_Click({
                     Remove-Item -Path $outputPath1 -Force
                     $log += "Activacion completada."
                 } catch {
-                    $log += "Error durante la activacion automÃ¡tica: $_"
+                    $log += "Error durante la activacion automitica: $_"
                 }
             }
 
@@ -611,7 +611,7 @@ $installButton.Add_Click({
     # Desactivar el boton para evitar multiples clics
     $activereadButton.IsEnabled = $true
     $installButton.Content = "Instalar"
-    # Puedes agregar aquÃ­ cualquier otra accion que desees
+    # Puedes agregar aqui cualquier otra accion que desees
 }
 })
 
