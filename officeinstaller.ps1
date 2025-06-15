@@ -7,9 +7,9 @@ function Start-ProcessAsAdmin {
     Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
 }
 
-# Comprobar si el script se estÃ¡ ejecutando como administrador
+# Comprobar si el script se estÃƒÂ¡ ejecutando como administrador
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    # Si no estÃ¡ ejecutÃ¡ndose como administrador, relanza el script con privilegios elevados
+    # Si no estÃƒÂ¡ ejecutÃƒÂ¡ndose como administrador, relanza el script con privilegios elevados
     Start-ProcessAsAdmin -file "powershell.exe" -arguments "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
     exit
 }
@@ -25,7 +25,7 @@ $imageUrl = "https://granikos.eu/wp-content/uploads/2023/02/Logo-Microsoft365.pn
 # Obtener la hora actual formateada para el nombre del archivo
 $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 
-# Ruta temporal con nombre dinÃ¡mico
+# Ruta temporal con nombre dinÃƒÂ¡mico
 $tempImagePath = [System.IO.Path]::Combine($env:TEMP, "office365_$timestamp.png")
 
 # Descargar la imagen si no existe o si quieres forzar que se actualice cada vez
@@ -278,7 +278,7 @@ Invoke-WebRequest -Uri $urlIcono -OutFile $rutaTemporalIcono
             <ComboBoxItem Content="Ukrainian" Tag="uk-UA"/>
             <ComboBoxItem Content="Chinese (Simplified)" Tag="zh-CN"/>
             <ComboBoxItem Content="Chinese (Traditional)" Tag="zh-TW"/>
-            <!-- Agrega aquÃ­ mÃ¡s opciones si es necesario -->
+            <!-- Agrega aquÃƒÂ­ mÃƒÂ¡s opciones si es necesario -->
         </ComboBox>
         <CheckBox x:Name="vlActivationCheckBox" 
         Content="Volumen License Code" 
@@ -431,55 +431,54 @@ Start-Process "https://cutt.ly/DonacionSyA"
 
 $activereadButton.Add_Click({
     $installButton.IsEnabled = $false
+    # Desactivar el boton para evitar mÃºltiples clics
     $activereadButton.IsEnabled = $false
     $activereadButton.Content = "Activando..."
 
+    # Preparar las variables
     $url = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd"
     $outputPath1 = "$env:TEMP\Ohook_Activation_AIO.cmd"
 
-    $log = @()
-    $log += "🔄 Descargando script de activación..."
-
-    # Descargar el script en segundo plano
+    # Iniciar la tarea pesada en segundo plano
     $job = Start-Job -ScriptBlock {
         param($url, $outputPath1)
-        Invoke-WebRequest -Uri $url -OutFile $outputPath1 -ErrorAction Stop
+        $log = @()
+        $log += "Iniciando Activacion. Espere..."
+        try {
+            Invoke-WebRequest -Uri $url -OutFile $outputPath1 -ErrorAction Stop
+
+            $log += "Activando..."
+            Start-Process -FilePath $outputPath1 -ArgumentList "/Ohook" -WindowStyle Hidden -Wait -Verb RunAs
+
+            Remove-Item -Path $outputPath1 -Force
+            $log += "Activacion completada."
+        } catch {
+            $log += "Error durante la activacion: $_"
+        }
+        return $log
     } -ArgumentList $url, $outputPath1
 
-    # Esperar a que termine la descarga
+    # Monitorea el job y actualiza la interfaz
     while ($job.State -eq 'Running') {
         [System.Windows.Forms.Application]::DoEvents()
         Start-Sleep -Milliseconds 200
     }
+    $msgs = Receive-Job $job
+    foreach ($msg in $msgs) { Add-LogMessage $msg }
+    Remove-Job $job
 
-    try {
-        Receive-Job $job
-        Remove-Job $job
-        $log += "✅ Script descargado. Iniciando activación..."
-
-        # Ejecutar como administrador fuera del Job
-        Start-Process -FilePath $outputPath1 -ArgumentList "/Ohook" -Verb RunAs -Wait
-
-        $log += "✅ Activación completada."
-        Remove-Item -Path $outputPath1 -Force
-    } catch {
-        $log += "❌ Error durante la activación: $_"
-    }
-
-    foreach ($msg in $log) { Add-LogMessage $msg }
-
+    # Restaurar el boton
     $installButton.IsEnabled = $true
     $activereadButton.IsEnabled = $true
-    $activereadButton.Content = "Solo Activar"
+    $activereadButton.Content = "Solo Activar"    
 })
-
 
 $installButton.Add_Click({
 
-# Desactivar el boton para evitar mºltiples clics
+# Desactivar el boton para evitar multiples clics
     $installButton.IsEnabled = $false
     
-    # Desactivar el boton para evitar mºltiples clics
+    # Desactivar el boton para evitar multiples clics
     $activereadButton.IsEnabled = $false
     
 
@@ -496,17 +495,17 @@ $installButton.Add_Click({
     $url = "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=$selectedVariant&platform=$architecture&language=$selectedLanguage&version=O16GA"
     $outputFile = "$env:TEMP\${selectedVariant}-${selectedLanguage}-${architecture}.exe"
     $installButton.Content = "Instalando..." 
-    # Mensaje de confirmación
-    $message = "Se procederá a descargar e instalar la siguiente variante de Office 365. ¿Desea continuar?"
+    # Mensaje de confirmacion
+    $message = "Se procederÃ¡ a descargar e instalar la siguiente variante de Office 365. Â¿Desea continuar?"
     if ($useVL) {
-        $message += "`n- Edición VL: $editionVL"
+        $message += "`n- Edicion VL: $editionVL"
         $message += "`n- Clave de licencia: $licenseKey"
     }
     $message += "`n- Variante: $selectedVariant"
     $message += "`n- Idioma: $selectedLanguage"
     $message += "`n- Sistema: $architecture"
-    $message += "`n- Activación Automática: $($autoActivate -eq $true)"
-    $result = [System.Windows.MessageBox]::Show($message, "Confirmar Instalación", [System.Windows.MessageBoxButton]::YesNo, [System.Windows.MessageBoxImage]::Question)
+    $message += "`n- Activacion AutomÃ¡tica: $($autoActivate -eq $true)"
+    $result = [System.Windows.MessageBox]::Show($message, "Confirmar Instalacion", [System.Windows.MessageBoxButton]::YesNo, [System.Windows.MessageBoxImage]::Question)
 
     if ($result -eq [System.Windows.MessageBoxResult]::Yes) {
         # Inicia la tarea pesada en segundo plano
@@ -519,17 +518,17 @@ $installButton.Add_Click({
             $log += "Descargando $url ..."
             try {
                 Invoke-WebRequest -Uri $url -OutFile $outputFile -ErrorAction Stop
-                $log += "Descarga completada. Iniciando la instalación..."
+                $log += "Descarga completada. Iniciando la instalacion..."
                 Start-Process -FilePath $outputFile -Wait
                 "taskkill /f /im OfficeC2RClient.exe" | cmd
-                $log += "Instalación completada."
+                $log += "Instalacion completada."
             } catch {
-                $log += "Error durante la descarga o instalación: $_"
+                $log += "Error durante la descarga o instalacion: $_"
                 return $log
             }
 
             if ($autoActivate -and -not $useVL) {
-                $log += "Iniciando Activación. Espere..."
+                $log += "Iniciando Activacion. Espere..."
                 $actUrl = "https://raw.githubusercontent.com/massgravel/Microsoft-Activation-Scripts/refs/heads/master/MAS/All-In-One-Version-KL/MAS_AIO.cmd"
                 $outputPath1 = "$env:TEMP\Ohook_Activation_AIO.cmd"
                 try {
@@ -537,9 +536,9 @@ $installButton.Add_Click({
                     $log += "Activando..."
                     Start-Process -FilePath $outputPath1 -ArgumentList "/Ohook" -WindowStyle Hidden -Wait -Verb RunAs
                     Remove-Item -Path $outputPath1 -Force
-                    $log += "Activación completada."
+                    $log += "Activacion completada."
                 } catch {
-                    $log += "Error durante la activación automática: $_"
+                    $log += "Error durante la activacion automÃ¡tica: $_"
                 }
             }
 
@@ -572,13 +571,13 @@ $installButton.Add_Click({
                     "Visio 2024 Professional VL" { "VisioPro2024VL" }
                     default { $null }
                 }
-                $log += "Edición seleccionada: $editionVL ($edition)"
+                $log += "Edicion seleccionada: $editionVL ($edition)"
                 $officePath = if (Test-Path "$env:ProgramFiles\Microsoft Office\Office16") {
                     "$env:ProgramFiles\Microsoft Office\Office16"
                 } elseif (Test-Path "$env:ProgramFiles(x86)\Microsoft Office\Office16") {
                     "$env:ProgramFiles(x86)\Microsoft Office\Office16"
                 } else {
-                    $log += "No se encontró la instalación de Microsoft Office en Office16."
+                    $log += "No se encontro la instalacion de Microsoft Office en Office16."
                     return $log
                 }
                 Set-Location $officePath
@@ -592,7 +591,7 @@ $installButton.Add_Click({
                 $log += "Instalando licencia: $licenseKey"
                 cscript ospp.vbs /inpkey:$licenseKey
                 cscript ospp.vbs /act
-                $log += "Activación completada."
+                $log += "Activacion completada."
             }
             return $log
         } -ArgumentList $url, $outputFile, $autoActivate, $useVL, $editionVL, $licenseKey
@@ -606,16 +605,15 @@ $installButton.Add_Click({
         foreach ($msg in $msgs) { Add-LogMessage $msg }
         Remove-Job $job
 } else {
-    # Código a ejecutar si el usuario selecciona "No"
+    # Codigo a ejecutar si el usuario selecciona "No"
     $installButton.IsEnabled = $true
     
-    # Desactivar el boton para evitar mºltiples clics
+    # Desactivar el boton para evitar multiples clics
     $activereadButton.IsEnabled = $true
     $installButton.Content = "Instalar"
-    # Puedes agregar aquí cualquier otra acción que desees
+    # Puedes agregar aquÃ­ cualquier otra accion que desees
 }
 })
-
 
 $window.ShowDialog() | Out-Null
 [Win32]::ShowWindow($consolePtr, 9) # 9 = Restaurar la ventana
