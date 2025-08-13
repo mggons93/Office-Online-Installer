@@ -147,8 +147,8 @@ irm https://cutt.ly/OfficeOnlineInstall | iex
 
 # Note
 # Notas
-las Ediciones VL aun no se encuentran disponibles, pero se pueden activar las versiones retail
-de manera normal
+las Ediciones VL aun no se encuentran disponibles, pero se pueden activar las versiones retail de
+manera normal
 ```
 ## Group
 <a href="https://chat.whatsapp.com/EcBkUA3QHCk5cWhyKc0eUZ" target="_blank">
