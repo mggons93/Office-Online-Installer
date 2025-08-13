@@ -36,7 +36,7 @@ irm https://cutt.ly/OfficeOnlineInstall | iex
 ## Upcoming updates
 ## Proximas actualizaciones
 
--> Cambio de interfaz y subida de version 3.0 -> Integrado el 18/04/2025
+-> Cambio de interfaz y subida de version 4.2 -> Integrado el 13/08/2025
 ```
 ```
 ## Features
@@ -147,7 +147,8 @@ irm https://cutt.ly/OfficeOnlineInstall | iex
 
 # Note
 # Notas
-las Ediciones VL aun no se encuentran disponibles, pero se pueden activar las versiones retail de manera normal
+las Ediciones VL aun no se encuentran disponibles, pero se pueden activar las versiones retail
+de manera normal
 ```
 ## Group
 <a href="https://chat.whatsapp.com/EcBkUA3QHCk5cWhyKc0eUZ" target="_blank">
