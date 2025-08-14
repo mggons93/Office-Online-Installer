@@ -1,3 +1,23 @@
+# Funcion para reiniciar el script con privilegios de administrador
+function Start-ProcessAsAdmin {
+    param (
+        [string]$file,
+        [string[]]$arguments = @()
+    )
+    Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
+}
+
+# Comprobar si el script se estiÂ¡ ejecutando como administrador
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    # Si no estiÂ¡ ejecutiÂ¡ndose como administrador, relanza el script con privilegios elevados
+    Start-ProcessAsAdmin -file "powershell.exe" -arguments "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
+    exit
+}
+
+$ErrorActionPreference = "Stop"
+# Enable TLSv1.2 for compatibility with older clients for current session
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 # ✅ CONFIGURACIÓN
 $owner = "mggons93"
 $repo = "Office-Online-Installer"
