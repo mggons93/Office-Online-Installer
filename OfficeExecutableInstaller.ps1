@@ -35,7 +35,7 @@ $headers = @{ "User-Agent" = "$owner" }
 try {
     $release = Invoke-RestMethod -Uri $releaseUrl -Headers $headers
 } catch {
-    Write-Error "❌ No se pudo obtener el último release: $_"
+    Write-Error "No se pudo obtener el último release: $_"
     exit 1
 }
 
@@ -43,7 +43,7 @@ try {
 $exeAsset = $release.assets | Where-Object { $_.name -like "*.exe" } | Select-Object -First 1
 
 if (-not $exeAsset) {
-    Write-Error "❌ No se encontró ningún archivo .exe en el release más reciente."
+    Write-Error "No se encontró ningún archivo .exe en el release más reciente."
     exit 1
 }
 
@@ -53,10 +53,10 @@ $localExePath = Join-Path $downloadFolder $exeName
 
 # ⬇️ Descargar si no está ya
 if (-not (Test-Path $localExePath)) {
-    Write-Host "🔽 Descargando $exeName..."
+    Write-Host "Descargando $exeName..."
     Invoke-WebRequest -Uri $exeUrl -OutFile $localExePath -Headers $headers
 } else {
-    Write-Host "📦 El archivo ya está descargado."
+    Write-Host "El archivo ya está descargado."
 }
 
 # 🛡️ Verificar y aplicar exclusiones de Windows Defender si es necesario
@@ -69,26 +69,26 @@ try {
 
         # Verificar si la ruta ya está excluida
         if ($excludedPaths -notcontains $localExePath) {
-            Write-Host "🛡️ Agregando exclusión de ruta..."
+            Write-Host "Agregando exclusión de ruta..."
             Add-MpPreference -ExclusionPath $localExePath
         } else {
-            Write-Host "✅ Ruta ya excluida."
+            Write-Host "Ruta ya excluida."
         }
 
         # Verificar si el proceso ya está excluido
         if ($excludedProcesses -notcontains $exeName) {
-            Write-Host "🛡️ Agregando exclusión de proceso..."
+            Write-Host "Agregando exclusión de proceso..."
             Add-MpPreference -ExclusionProcess $exeName
         } else {
-            Write-Host "✅ Proceso ya excluido."
+            Write-Host "Proceso ya excluido."
         }
     } else {
-        Write-Warning "⚠️ Windows Defender no está activo o no disponible."
+        Write-Warning "Windows Defender no está activo o no disponible."
     }
 } catch {
-    Write-Warning "⚠️ No se pudo agregar exclusión a Windows Defender: $_"
+    Write-Warning "No se pudo agregar exclusión a Windows Defender: $_"
 }
 
 # 🚀 Ejecutar el instalador
-Write-Host "🚀 Ejecutando $exeName..."
+Write-Host "Ejecutando $exeName..."
 Start-Process -FilePath $localExePath -Wait
