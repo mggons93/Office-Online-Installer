@@ -29,7 +29,7 @@ irm https://cutt.ly/NewOfficeInstall | iex
 ```
 ## Imagen de Muestra
 <p align="center">
-<a href=></a><img src="https://github.com/mggons93/Mggons/blob/main/Img.png"/>
+<a href=></a><img src="https://github.com/mggons93/Office-Online-Installer/blob/main/Validate/Img.png"/>
 </p>
 
 ```
