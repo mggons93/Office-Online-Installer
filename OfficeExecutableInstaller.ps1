@@ -92,3 +92,20 @@ try {
 # 🚀 Ejecutar el instalador
 Write-Host "Ejecutando $exeName..."
 Start-Process -FilePath $localExePath -Wait
+
+# 🧹 Eliminar instalador después de cerrarse
+try {
+    Remove-Item -Path $localExePath -Force
+    Write-Host "Instalador eliminado: $localExePath"
+
+    # Opcional: eliminar carpeta temporal completa
+    if (Test-Path $downloadFolder) {
+        Remove-Item -Path $downloadFolder -Recurse -Force
+        Write-Host "Carpeta temporal eliminada: $downloadFolder"
+    }
+} catch {
+    Write-Warning "No se pudo limpiar todo: $_"
+}
+
+# 🔴 Cerrar la ventana de PowerShell automáticamente
+exit
