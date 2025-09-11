@@ -106,6 +106,3 @@ try {
 } catch {
     Write-Warning "No se pudo limpiar todo: $_"
 }
-
-# 🔴 Cerrar la ventana de PowerShell automáticamente
-exit
