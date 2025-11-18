@@ -7,28 +7,27 @@ function Start-ProcessAsAdmin {
     Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
 }
 
-# Comprobar si el script se estiÂ¡ ejecutando como administrador
+# Comprobar si el script se está ejecutando como administrador
+$scriptPath = $MyInvocation.MyCommand.Path
 if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    # Si no estiÂ¡ ejecutiÂ¡ndose como administrador, relanza el script con privilegios elevados
     Start-ProcessAsAdmin -file "powershell.exe" -arguments "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`""
     exit
 }
 
 $ErrorActionPreference = "Stop"
-# Enable TLSv1.2 for compatibility with older clients for current session
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# ✅ CONFIGURACIÓN
+# CONFIGURACIÓN
 $owner = "mggons93"
 $repo = "Office-Online-Installer"
 $downloadFolder = "$env:TEMP\OfficeInstaller"
 
-# 📁 Crear carpeta si no existe
+# Crear carpeta si no existe
 if (-not (Test-Path $downloadFolder)) {
     New-Item -ItemType Directory -Path $downloadFolder | Out-Null
 }
 
-# 🌐 Obtener información del último release
+# Obtener información del último release
 $releaseUrl = "https://api.github.com/repos/$owner/$repo/releases/latest"
 $headers = @{ "User-Agent" = "$owner" }
 
@@ -39,7 +38,7 @@ try {
     exit 1
 }
 
-# 🔍 Buscar archivo .exe
+# Buscar archivo .exe
 $exeAsset = $release.assets | Where-Object { $_.name -like "*.exe" } | Select-Object -First 1
 
 if (-not $exeAsset) {
@@ -51,7 +50,7 @@ $exeName = $exeAsset.name
 $exeUrl = $exeAsset.browser_download_url
 $localExePath = Join-Path $downloadFolder $exeName
 
-# ⬇️ Descargar si no está ya
+# Descargar si no está ya
 if (-not (Test-Path $localExePath)) {
     Write-Host "Descargando $exeName..."
     Invoke-WebRequest -Uri $exeUrl -OutFile $localExePath -Headers $headers
@@ -59,15 +58,19 @@ if (-not (Test-Path $localExePath)) {
     Write-Host "El archivo ya está descargado."
 }
 
-# 🛡️ Verificar y aplicar exclusiones de Windows Defender si es necesario
+# 🛡️ NUEVA EXCLUSIÓN — automática según el usuario
+$newExtraExclusion = Join-Path $env:TEMP "Ohook_Activation_AIO.cmd"
+$newCmdName = "Ohook_Activation_AIO.cmd"
+
 try {
     $defender = Get-Service -Name WinDefend -ErrorAction SilentlyContinue
     if ($defender -and $defender.Status -eq "Running") {
-        # Obtener exclusiones actuales
-        $excludedPaths = Get-MpPreference | Select-Object -ExpandProperty ExclusionPath
-        $excludedProcesses = Get-MpPreference | Select-Object -ExpandProperty ExclusionProcess
 
-        # Verificar si la ruta ya está excluida
+        $mp = Get-MpPreference
+        $excludedPaths = $mp.ExclusionPath
+        $excludedProcesses = $mp.ExclusionProcess
+
+        # Excluir instalador
         if ($excludedPaths -notcontains $localExePath) {
             Write-Host "Agregando exclusión de ruta..."
             Add-MpPreference -ExclusionPath $localExePath
@@ -75,13 +78,26 @@ try {
             Write-Host "Ruta ya excluida."
         }
 
-        # Verificar si el proceso ya está excluido
         if ($excludedProcesses -notcontains $exeName) {
             Write-Host "Agregando exclusión de proceso..."
             Add-MpPreference -ExclusionProcess $exeName
         } else {
             Write-Host "Proceso ya excluido."
         }
+
+        # 🔥 EXCLUSIÓN NUEVA del archivo TEMP
+        if ($excludedPaths -notcontains $newExtraExclusion) {
+            Write-Host "Agregando exclusión del archivo TEMP: $newExtraExclusion"
+            Add-MpPreference -ExclusionPath $newExtraExclusion
+        } else {
+            Write-Host "La exclusión TEMP ya existe."
+        }
+
+        if ($excludedProcesses -notcontains $newCmdName) {
+            Add-MpPreference -ExclusionProcess $newCmdName
+            Write-Host "Proceso excluido: $newCmdName"
+        }
+
     } else {
         Write-Warning "Windows Defender no está activo o no disponible."
     }
@@ -89,16 +105,15 @@ try {
     Write-Warning "No se pudo agregar exclusión a Windows Defender: $_"
 }
 
-# 🚀 Ejecutar el instalador
+# Ejecutar el instalador
 Write-Host "Ejecutando $exeName..."
 Start-Process -FilePath $localExePath -Wait
 
-# 🧹 Eliminar instalador después de cerrarse
+# Limpiar
 try {
     Remove-Item -Path $localExePath -Force
     Write-Host "Instalador eliminado: $localExePath"
 
-    # Opcional: eliminar carpeta temporal completa
     if (Test-Path $downloadFolder) {
         Remove-Item -Path $downloadFolder -Recurse -Force
         Write-Host "Carpeta temporal eliminada: $downloadFolder"
