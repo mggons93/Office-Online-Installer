@@ -38,7 +38,7 @@ irm https://cutt.ly/NewOfficeInstall | iex
 ## Upcoming updates
 ## Proximas actualizaciones
 
--> Cambio de interfaz y subida de version 4.2 -> Integrado el 13/08/2025
+-> Cambio de interfaz y subida de version 5.0 -> Integrado el 8/12/2025
 ```
 ```
 ## Features
