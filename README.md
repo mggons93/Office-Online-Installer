@@ -29,9 +29,11 @@ irm https://cutt.ly/NewOfficeInstall | iex
 ```
 ## Imagen de Muestra
 <p align="center">
-<a href=></a><img src="https://github.com/mggons93/Office-Online-Installer/blob/main/Validate/Img.png"/>
+<a href=></a><img src="https://github.com/mggons93/Office-Online-Installer/blob/main/Validate/img1.png"/>
 </p>
-
+<p align="center">
+<a href=></a><img src="https://github.com/mggons93/Office-Online-Installer/blob/main/Validate/img2.png"/>
+</p>
 ```
 ## Upcoming updates
 ## Proximas actualizaciones
