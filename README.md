@@ -149,8 +149,7 @@ irm https://cutt.ly/NewOfficeInstall | iex
 
 # Note
 # Notas
-las Ediciones VL aun no se encuentran disponibles, pero se pueden activar las versiones retail de
-manera normal
+
 ```
 ```
 ## Group
