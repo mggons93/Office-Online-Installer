@@ -37,9 +37,8 @@ irm https://cutt.ly/NewOfficeInstall | iex
 ```
 ## Upcoming updates / Proximas actualizaciones
 
-```bash
 Cambio de interfaz y subida de version 5.0 -> Integrado el 8/12/2025
-```
+
 ## Features / Características
 
 ## Microsoft Office Support / Soporte de Microsoft Office
