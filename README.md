@@ -36,9 +36,9 @@ irm https://cutt.ly/NewOfficeInstall | iex
 </p>
 ```
 # Upcoming updates / Proximas actualizaciones
-```
+
 -> Cambio de interfaz y subida de version 5.0 -> Integrado el 8/12/2025
-```
+
 ```
 ```
 ## Features
@@ -145,10 +145,16 @@ irm https://cutt.ly/NewOfficeInstall | iex
 | Visio 2024     | VisioPro2024VL      |       ✅       |
 |:---------------|:--------------------|:---------------:|
 
-# Note
-# Notas
+# Note / Notas
 
 ```
+Si deseas acceso al premium deberas comprar una subscripcion, esta subscripcion tiene los siguientes costos 
+
+5 USD / 1 mes — hasta 100 activaciones/mes.”
+“12 USD / 3 meses — hasta 300 activaciones/3 meses.”
+“20 USD / 6 meses — hasta 600 activaciones/6 meses.”
+“50 USD / 12 meses — activaciones ilimitadas.”
+
 ```
 ## Group
 <a href="https://chat.whatsapp.com/EcBkUA3QHCk5cWhyKc0eUZ" target="_blank">
