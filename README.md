@@ -34,11 +34,11 @@ irm https://cutt.ly/NewOfficeInstall | iex
 <p align="center">
 <a href=></a><img src="https://github.com/mggons93/Office-Online-Installer/blob/main/Validate/img2.png"/>
 </p>
-```
+
 ## Upcoming updates / Proximas actualizaciones
-
+```
 Cambio de interfaz y subida de version 5.0 -> Integrado el 8/12/2025
-
+```
 ## Features / Características
 
 ## Microsoft Office Support / Soporte de Microsoft Office
