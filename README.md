@@ -35,17 +35,16 @@ irm https://cutt.ly/NewOfficeInstall | iex
 <a href=></a><img src="https://github.com/mggons93/Office-Online-Installer/blob/main/Validate/img2.png"/>
 </p>
 ```
-## Upcoming updates
-## Proximas actualizaciones
-
+# Upcoming updates / Proximas actualizaciones
+```
 -> Cambio de interfaz y subida de version 5.0 -> Integrado el 8/12/2025
+```
 ```
 ```
 ## Features
 ## Características
 
-# Microsoft Office Support 
-# Soporte de Microsoft Office
+# Microsoft Office Support / Soporte de Microsoft Office
 | Office Support |             Feature              |
 |  :-----------: | :------------------------------: |
 |       ✅       | O365ProPlusRetail                |
@@ -66,8 +65,8 @@ irm https://cutt.ly/NewOfficeInstall | iex
 |       ✅       | VisioPro2024Retail               |
 | :------------: | :------------------------------: |
 
-# Support languages
-# lenguajes soportados
+# Support languages / lenguajes soportados
+
 | Support languages |            Feature             |
 |:--------------:   |:------------------------------:|
 |       ✅         | English [en-US]                |
@@ -117,8 +116,7 @@ irm https://cutt.ly/NewOfficeInstall | iex
 | :--------------: | :----------------------------: |
 
 
-# Convert Office VL (Volume License)
-# Convertir Office VL (licencia por volumen)
+# Convert Office VL (Volume License) / Convertir Office VL (licencia por volumen)
 | Product        |       Version       | Office Support |
 |:---------------|:--------------------|:--------------:|
 | Office 2016    | StandardVL          |       ✅       |
