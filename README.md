@@ -150,9 +150,9 @@ irm https://cutt.ly/NewOfficeInstall | iex
 ```
 Si deseas acceso al premium deberas comprar una subscripcion, esta subscripcion tiene los siguientes costos 
 
-5 USD / 1 mes — hasta 100 activaciones/mes.”
-“12 USD / 3 meses — hasta 300 activaciones/3 meses.”
-“20 USD / 6 meses — hasta 600 activaciones/6 meses.”
+5 USD / 1 mes — hasta 100 activaciones.”
+“12 USD / 3 meses — hasta 300 activaciones.”
+“20 USD / 6 meses — hasta 600 activaciones.”
 “50 USD / 12 meses — activaciones ilimitadas.”
 
 ```
