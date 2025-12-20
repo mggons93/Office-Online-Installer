@@ -35,7 +35,8 @@ irm https://cutt.ly/NewOfficeInstall | iex
 <a href=></a><img src="https://github.com/mggons93/Office-Online-Installer/blob/main/Validate/img2.png"/>
 </p>
 ```
-# Upcoming updates / Proximas actualizaciones
+## Upcoming updates / Proximas actualizaciones
+
 ```bash
 Cambio de interfaz y subida de version 5.0 -> Integrado el 8/12/2025
 ```
