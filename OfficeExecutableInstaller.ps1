@@ -1,4 +1,3 @@
-# Funcion para reiniciar el script con privilegios de administrador
 function Start-ProcessAsAdmin {
     param (
         [string]$file,
@@ -7,7 +6,6 @@ function Start-ProcessAsAdmin {
     Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
 }
 
-# Comprobar si el script se está ejecutando como administrador
 $scriptPath = $MyInvocation.MyCommand.Path
 if (-not ([Security.Principal.WindowsPrincipal] `
     [Security.Principal.WindowsIdentity]::GetCurrent()
