@@ -117,4 +117,3 @@ try {
 } catch {
     Write-Warning "No se pudo limpiar completamente: $_"
 }
-v
