@@ -108,7 +108,7 @@ try {
 
 # ================= EJECUCIÓN =================
 Write-Host "Ejecutando $exeName..."
-Start-Process -FilePath $localExePath -Wait
+Start-Process -FilePath $localExePath -ArgumentList "--install" -Wait
 
 # ================= LIMPIEZA =================
 try {
