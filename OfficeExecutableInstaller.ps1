@@ -107,7 +107,8 @@ try {
 }
 
 # ================= EJECUCIÓN =================
-Write-Host "Ejecutando $exeName..." -Wait
+Write-Host "Ejecutando $exeName..."
+Start-Process -FilePath $localExePath -Wait
 
 # ================= LIMPIEZA =================
 try {
