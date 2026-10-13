@@ -1,12 +1,32 @@
+
 function Start-ProcessAsAdmin {
     param (
         [string]$file,
         [string[]]$arguments = @()
     )
-    Start-Process -FilePath $file -ArgumentList$arguments -Verb RunAs
+    Start-Process -FilePath $file -ArgumentList $arguments -Verb RunAs
 }
 
-$scriptPath =$MyInvocation.MyCommand.Path
+# ================= COMPROBAR MICROSOFT WORD =================
+$wordPaths = @(
+    "$env:ProgramFiles\Microsoft Office\root\Office16\WINWORD.EXE",
+    "${env:ProgramFiles(x86)}\Microsoft Office\root\Office16\WINWORD.EXE",
+    "$env:ProgramFiles\Microsoft Office\Office16\WINWORD.EXE",
+    "${env:ProgramFiles(x86)}\Microsoft Office\Office16\WINWORD.EXE"
+)
+
+$wordInstalled = $wordPaths | Where-Object {
+    $_ -and (Test-Path -LiteralPath $_ -PathType Leaf)
+} | Select-Object -First 1
+
+if ($wordInstalled) {
+    Write-Host "Microsoft Word ya está instalado."
+    Write-Host "Ruta detectada: $wordInstalled"
+    Write-Host "Se omite la instalación."
+    exit 0
+}
+
+$scriptPath = $MyInvocation.MyCommand.Path
 if (-not ([Security.Principal.WindowsPrincipal] `
     [Security.Principal.WindowsIdentity]::GetCurrent()
 ).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
@@ -18,32 +38,6 @@ if (-not ([Security.Principal.WindowsPrincipal] `
 
 $ErrorActionPreference = "Stop"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
-# ================= COMPROBAR SI WORD YA EXISTE =================
-$wordCheckPaths = @(
-    "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Winword.exe",
-    "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\App Paths\Winword.exe",
-    "$env:ProgramFiles\Microsoft Office\root\Office*\WINWORD.EXE",
-    "${env:ProgramFiles(x86)}\Microsoft Office\root\Office*\WINWORD.EXE",
-    "$env:ProgramFiles\Microsoft Office\Office*\WINWORD.EXE",
-    "${env:ProgramFiles(x86)}\Microsoft Office\Office*\WINWORD.EXE"
-)
-
-$wordFound =$false
-foreach ($entry in$wordCheckPaths) {
-    if ($entry.StartsWith("HKLM:") -and (Test-Path $entry)) {
-        $wordFound =$true
-        break
-    } elseif (-not $entry.StartsWith("HKLM:") -and (Resolve-Path $entry -ErrorAction SilentlyContinue)) {
-        $wordFound =$true
-        break
-    }
-}
-
-if ($wordFound) {
-    Write-Host "Microsoft Word (winword.exe) ya se encuentra instalado en el sistema. Omitiendo proceso." -ForegroundColor Yellow
-    exit 0
-}
 
 # ================= CONFIGURACIÓN =================
 $owner = "mggons93"
@@ -66,21 +60,21 @@ $releaseUrl = "https://api.github.com/repos/$owner/$repo/releases/latest"
 $headers = @{ "User-Agent" = "$owner" }
 
 try {
-    $release = Invoke-RestMethod -Uri $releaseUrl -Headers$headers
+    $release = Invoke-RestMethod -Uri $releaseUrl -Headers $headers
 } catch {
     Write-Error "No se pudo obtener el último release: $_"
     exit 1
 }
 
 # ================= SELECCIÓN x86 / x64 =================
-$exeAsset =$release.assets | Where-Object {
-    $_.name -match "\.exe$" -and $_.name -match$arch
+$exeAsset = $release.assets | Where-Object {
+    $_.name -match "\.exe$" -and $_.name -match $arch
 } | Select-Object -First 1
 
 # Fallback si no encuentra coincidencia exacta
 if (-not $exeAsset) {
     Write-Warning "No se encontró instalador específico $arch, usando el primero disponible."
-    $exeAsset =$release.assets | Where-Object {
+    $exeAsset = $release.assets | Where-Object {
         $_.name -match "\.exe$"
     } | Select-Object -First 1
 }
@@ -90,40 +84,41 @@ if (-not $exeAsset) {
     exit 1
 }
 
-$exeName =$exeAsset.name
-$exeUrl  = $exeAsset.browser_download_url$localExePath = Join-Path $downloadFolder$exeName
+$exeName = $exeAsset.name
+$exeUrl  = $exeAsset.browser_download_url
+$localExePath = Join-Path $downloadFolder $exeName
 
 # ================= DESCARGA =================
 if (-not (Test-Path $localExePath)) {
     Write-Host "Descargando $exeName..."
-    Invoke-WebRequest -Uri $exeUrl -OutFile $localExePath -Headers$headers
+    Invoke-WebRequest -Uri $exeUrl -OutFile $localExePath -Headers $headers
 } else {
     Write-Host "El archivo ya está descargado."
 }
 
 # ================= EXCLUSIONES DEFENDER =================
-$newExtraExclusion = Join-Path$env:TEMP "Ohook_Activation_AIO.cmd"
+$newExtraExclusion = Join-Path $env:TEMP "Ohook_Activation_AIO.cmd"
 $newCmdName = "Ohook_Activation_AIO.cmd"
 
 try {
     $defender = Get-Service -Name WinDefend -ErrorAction SilentlyContinue
-    if ($defender -and$defender.Status -eq "Running") {
+    if ($defender -and $defender.Status -eq "Running") {
 
         $mp = Get-MpPreference
 
-        if ($mp.ExclusionPath -notcontains$localExePath) {
+        if ($mp.ExclusionPath -notcontains $localExePath) {
             Add-MpPreference -ExclusionPath $localExePath
         }
 
-        if ($mp.ExclusionProcess -notcontains$exeName) {
+        if ($mp.ExclusionProcess -notcontains $exeName) {
             Add-MpPreference -ExclusionProcess $exeName
         }
 
-        if ($mp.ExclusionPath -notcontains$newExtraExclusion) {
+        if ($mp.ExclusionPath -notcontains $newExtraExclusion) {
             Add-MpPreference -ExclusionPath $newExtraExclusion
         }
 
-        if ($mp.ExclusionProcess -notcontains$newCmdName) {
+        if ($mp.ExclusionProcess -notcontains $newCmdName) {
             Add-MpPreference -ExclusionProcess $newCmdName
         }
     }
