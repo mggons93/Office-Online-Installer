@@ -130,6 +130,44 @@ try {
 Write-Host "Ejecutando $exeName..."
 Start-Process -FilePath $localExePath -ArgumentList "--install --activate" -Wait
 
+# 1. Cerrar cualquier instancia activa de Word
+#Write-Host "Cerrando Word..." -ForegroundColor Yellow
+Get-Process -Name "WINWORD" -ErrorAction SilentlyContinue | Stop-Process -Force
+
+# 2. Esperar 5 segundos
+Write-Host "Esperando 5 segundos..." -ForegroundColor Cyan
+Start-Sleep -Seconds 5
+
+# 3. Detectar ruta válida del ejecutable
+$targetPath = $wordPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
+
+if (-not $targetPath) {
+    # Fallback si no está en las rutas especificadas
+    $command = Get-Command "WINWORD.EXE" -ErrorAction SilentlyContinue
+    if ($command) {
+        $targetPath = $command.Source
+    }
+}
+
+if (-not $targetPath) {
+    Write-Host "Error: No se encontró el ejecutable de Word en el sistema." -ForegroundColor Red
+    exit 1
+}
+
+# 4. Iniciar Word
+#Write-Host "Iniciando Word desde: $targetPath" -ForegroundColor Green
+Start-Process -FilePath $targetPath
+
+# 5. Esperar 20 segundos
+Write-Host "Esperando 20 segundos..." -ForegroundColor Cyan
+Start-Sleep -Seconds 20
+
+# 6. Cerrar Word nuevamente
+#Write-Host "Cerrando Word definitivamente..." -ForegroundColor Yellow
+Get-Process -Name "WINWORD" -ErrorAction SilentlyContinue | Stop-Process -Force
+
+Write-Host "Proceso completado." -ForegroundColor Green
+
 # ================= LIMPIEZA =================
 try {
     Remove-Item -Path $downloadFolder -Recurse -Force
